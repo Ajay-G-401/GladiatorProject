@@ -1,0 +1,52 @@
+  
+<article>
+  <h4 style="text-align:center;font-family:helvetica;margin-top:35px;color:#404040;font-size:20px">Retailer Register</h4>
+  
+  <form [formGroup]="registerForm" (ngSubmit)="register()"> 
+    <div *ngIf="msg">
+      {{msg}}
+    </div>
+  <label >Email: </label><br>
+  
+  <input type="text" formControlName="remail" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.remail.errors }"  [(ngModel)]="RetailerRegister.retaileremail" autofocus/>
+  <span>
+    
+    <div *ngIf="submitted && f.remail.errors" class="invalid-feedback">
+      <div *ngIf="f.remail.errors.required">Please enter the email</div>
+    </div>
+</span>
+  <label >Password: </label><br>
+  
+  <input type="password" formControlName="rpassword" class="form-control" [(ngModel)]="RetailerRegister.retailerpassword"  [ngClass]="{ 'is-invalid': submitted && f.rpassword.errors }"/>
+       <br>
+  <span >
+       <div *ngIf="submitted && f.rpassword.errors" class="invalid-feedback">
+         <div *ngIf="f.rpassword.errors">Password should be atleast 8 char contain one [A-Z],one [a-z] and one [0-9]</div>
+       </div>
+  </span>
+  
+  <label >Name: </label><br>
+  
+  <input type="text" formControlName="rname" class="form-control" [(ngModel)]="RetailerRegister.retailername"  [ngClass]="{ 'is-invalid': submitted && f.rname.errors }"/>
+       <br>
+  <span >
+    
+    <div *ngIf="submitted && f.rname.errors" class="invalid-feedback">
+      <div *ngIf="f.rname.errors.required">Please enter the name</div>
+    </div>
+  </span>
+
+  
+      <p><input type="checkbox" class="checkbox" required="">
+       <label>I Agree To The Terms & Conditions</label> </p>
+        
+            
+
+
+      <input type="submit" name="changepass" id="changepass" value="Register" style="text-align:center;background-color:black;color:white;margin-top:10px">
+      <div>
+        <p>Do you  have an Account? <a [routerLink]="['/retailerlogin']"> Login Now!</a></p>
+          </div>
+</form>
+  </article>
+

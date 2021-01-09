@@ -1,0 +1,55 @@
+<p>profileuser works!</p>
+<br><br>
+<html>
+    <table id="users">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Apartments</th>
+                <th>Street</th>
+                <th>Town</th>
+                <th>State</th>
+                <th>Pincode</th>
+                <th>Country</th>
+                <th>Wish to change password ?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let d of users">
+                <td>{{d.username}}</td>
+                <td>{{d.userapartment}}</td>
+                <td>{{d.userstreet}}</td>
+                <td>{{d.usertown}}</td>
+                <td>{{d.userstate}}</td>
+                <td>{{d.userpincode}}</td>
+                <td>{{d.usercountry}}</td>
+                <td colspan="2">
+                    <button class="btn btn-danger" (click)="UserPassChange()"> Yes </button>&nbsp;&nbsp;
+                    <button class="btn btn-success" (click)="gotoHome()"> No </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    <table id="userorder">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Brand</th>
+                <th>Product Price</th>
+                <th>Order Quantity</th>
+                <th>Order Date</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let u of userorders">
+
+            <tr>
+                <td>{{u.productname}}</td>
+                <td>{{u.productbrand}}</td>
+                <td>{{u.productprice}}</td>
+                <td>{{u.orderquantity}}</td>
+                <td>{{u.orderdate}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </html>

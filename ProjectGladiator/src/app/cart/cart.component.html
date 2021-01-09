@@ -1,0 +1,75 @@
+<p>cart works!</p>
+<div class="container">
+    <br><br>
+    <h3><i><u>Hello, {{useremail}} ! Here is your cart</u></i></h3>
+  </div>
+  <br><br>
+  
+  <div class="card col-sm-9" *ngFor = "let uc of usercart">
+    <div class="row no-gutters">
+        <div class="col-sm-3">
+          <!-- <div class="containernew">
+            <img src="https://localhost:44369/Image/{{uc.productimage1}}" class="img-fluid" alt="" width="100" height="160">
+          </div> -->
+        </div>
+        <div class="col-sm-6">
+            <div class="card-block px-2">
+                <h4 class="card-title">{{uc.productname}}</h4>
+                <p class="card-text">
+                  {{uc.productdescription}}
+                </p>
+                <h2>Price : {{uc.productprice}} &#8377;</h2>
+                <h3>Cart Quantity : {{uc.cartquantity}}</h3>
+                <!--<h2>Total : {{uc.total}} &#8377;</h2>-->
+                <h3>Do you want to change quantity ?</h3>
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus btn btn-danger"><i class="fa fa-minus"></i></button>&nbsp;&nbsp;
+                <input style="width: 5em; text-align:center" min="0" #quantity id="myquantity" name="quantity" value="{{uc.cartquantity}}" type="number">&nbsp;&nbsp;
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus btn btn-success"><i class="fa fa-plus"></i></button>
+                <br>
+                <br>
+                <!--<button type="button" class="btn btn-warning" (click) = "Buyproduct(uc.productid, uc.retailerid,quantity.value)"> Buy now </button>-->
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" (click) = "OpenModel(uc.productid,uc.cartid,uc.productprice,uc.retailerid,uc.productname, uc.total,quantity.value)" style="color: white;"> Buy now </button>&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning" (click) = "Removefromcart(uc.cartid,uc.productid)"  > Remove from cart </button>
+                <br><br>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer w-100 text-muted">
+        {{uc.categoryname}}
+        <h4> Sold by : {{uc.retailername}}  , For any enquiries write to <b>{{uc.retaileremail}}</b></h4>
+    </div>
+    <br><br>
+  </div>
+  <br><br><br>
+  <div class="row row-no-gutters">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Sub total : {{subtotal[1]}} &#8377;</h5>
+        <p class="card-text"></p>
+        <h5> Product inside cart : {{subtotal[0]}}</h5> 
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Proceed to buy </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Confirm your order to place
+          <h3>ProductName : {{order.productname}}</h3>
+          <h3>Quantity :{{order.orderquantity}}</h3>
+          <h3>Total : {{order.total}} &#8377;</h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-warning" (click) = "Buyproduct(order.productid, order.retailerid,order.orderquantity, order.cartid)">Place order</button>
+        </div>
+      </div>
+    </div>
+  </div>

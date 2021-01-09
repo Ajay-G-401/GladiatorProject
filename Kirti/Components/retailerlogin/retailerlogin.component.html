@@ -1,0 +1,36 @@
+
+<article>
+    <h4 style="text-align:center;font-family:helvetica;margin-top:35px;color:#404040;font-size:20px">Retailer Login</h4>
+    
+    <form [formGroup] = "loginForm" >
+        <div *ngIf="msg">
+            {{msg}}
+          </div>
+    <label >Email: </label><br>
+    
+    <input type = "text" class="form-control" [(ngModel)]="RetailerLogin.retaileremail"
+    formControlName = "retaileremail" autofocus>
+    <span>
+        <div *ngIf = "h.retaileremail.errors && h.retaileremail.touched" class="text-danger">
+            <div *ngIf = "h.retaileremail.errors.required">Email is required</div>
+            <div *ngIf = "h.retaileremail.errors.email">Email must be a valid email address</div>
+        </div>
+</span>
+    <label >Password: </label><br>
+    
+    <input type = "password" class="form-control" formControlName = "retailerpassword" [(ngModel)]="RetailerLogin.retailerpassword"><br>
+    <span >
+         <div *ngIf="h.retailerpassword.errors &&h.retailerpassword.touched" class="text-danger">
+                                <div *ngIf = "h.retailerpassword.errors.required">Password is required</div>
+                                <div *ngIf = "h.retailerpassword.errors.minlength">Password must be of minimum 6 characters</div>
+                            </div>
+                        </span>
+    
+        <input type="submit" name="changepass" id="changepass" value="Login" style="text-align:center;background-color:black;color:white;margin-top:10px" (click)="Login()">
+       
+            <a [routerLink]="['/retailerforgotpassword']">Forgot Password?</a><br>
+            <p>Don't have an account ? <a [routerLink]="['/retailerlogin']">Create Account</a></p>
+        
+</form>
+    </article>
+

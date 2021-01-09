@@ -1,0 +1,51 @@
+--------------------Retailer Login Check--------------------------
+create proc proc_RetailLoginCheck(@rmail varchar(40),@pass varchar(40))
+as 
+begin
+	select retaileremail,retailerpassword from tblRetailer where retaileremail=@rmail and retailerpassword=@pass and approved not in ('pending','rejected')
+end
+
+-------------------Retailer Change password--------------------------
+
+create proc proc_Changepass(@rmail nvarchar(40),@rpass nvarchar(40))
+as
+begin
+UPDATE tblRetailer
+SET retailerpassword=@rpass
+WHERE retaileremail=@rmail
+end
+
+--------------------Retailer Display Products-------------------------------
+
+
+create proc proc_DisplayProducts(@rmail varchar(40))
+as 
+begin
+	select p.productid,p.productname,p.productprice,p.productquantity,p.productdescription,p.productbrand,p.productstatus,c.categoryname
+	from tblProduct p join tblRetailer r 
+	on p.retailerid=r.retailerid 
+	join tblCategory c
+	on p.categoryid=c.categoryid
+	where p.retailerid =(select retailerid from tblRetailer where retaileremail=@rmail)
+
+end
+
+----------------------Retailer Update Product------------------------------
+
+create proc proc_UpdateProduct(@rmail varchar(40),@pprice float,@pquantity int,@pdescrip nvarchar(max))
+as 
+begin
+	update tblProduct set productprice=@pprice,productquantity=@pquantity,productdescription=@pdescrip, productnotification='updated',productstatus='pending' where retailerid=(select retailerid from tblRetailer where retaileremail=@rmail)
+end
+
+-------------------------Display Retailer Details--------------------------
+
+create proc proc_DisplayRetailerDetails(@rmail varchar(40))
+as 
+begin
+	select p.productname,p.productbrand,o.useremail,p.productprice,o.orderquantity,p.productstatus
+	from tblProduct p join tblOrder o 
+	on p.retailerid=o.retailerid 
+	where p.retailerid =(select retailerid from tblRetailer where retaileremail=@rmail)
+
+end

@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbProjectModelStoreContainer" CdmEntityContainer="dbProjectEntities">
+    <EntitySetMapping Name="tblCarts">
+      <EntityTypeMapping TypeName="dbProjectModel.tblCart">
+        <MappingFragment StoreEntitySet="tblCart">
+          <ScalarProperty Name="cartid" ColumnName="cartid" />
+          <ScalarProperty Name="useremail" ColumnName="useremail" />
+          <ScalarProperty Name="productid" ColumnName="productid" />
+          <ScalarProperty Name="cartquantity" ColumnName="cartquantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCategories">
+      <EntityTypeMapping TypeName="dbProjectModel.tblCategory">
+        <MappingFragment StoreEntitySet="tblCategory">
+          <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+          <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+          <ScalarProperty Name="categorydescription" ColumnName="categorydescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCompares">
+      <EntityTypeMapping TypeName="dbProjectModel.tblCompare">
+        <MappingFragment StoreEntitySet="tblCompare">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+          <ScalarProperty Name="useremail" ColumnName="useremail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProducts">
+      <EntityTypeMapping TypeName="dbProjectModel.tblProduct">
+        <MappingFragment StoreEntitySet="tblProduct">
+          <ScalarProperty Name="productid" ColumnName="productid" />
+          <ScalarProperty Name="productname" ColumnName="productname" />
+          <ScalarProperty Name="productprice" ColumnName="productprice" />
+          <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+          <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+          <ScalarProperty Name="productbrand" ColumnName="productbrand" />
+          <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+          <ScalarProperty Name="productnotification" ColumnName="productnotification" />
+          <ScalarProperty Name="productstatus" ColumnName="productstatus" />
+          <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+          <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="dbProjectModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="useremail" ColumnName="useremail" />
+          <ScalarProperty Name="useurname" ColumnName="useurname" />
+          <ScalarProperty Name="userphone" ColumnName="userphone" />
+          <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+          <ScalarProperty Name="userapartment" ColumnName="userapartment" />
+          <ScalarProperty Name="userstreet" ColumnName="userstreet" />
+          <ScalarProperty Name="usertown" ColumnName="usertown" />
+          <ScalarProperty Name="userstate" ColumnName="userstate" />
+          <ScalarProperty Name="userpincode" ColumnName="userpincode" />
+          <ScalarProperty Name="usercountry" ColumnName="usercountry" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblWishlists">
+      <EntityTypeMapping TypeName="dbProjectModel.tblWishlist">
+        <MappingFragment StoreEntitySet="tblWishlist">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+          <ScalarProperty Name="useremail" ColumnName="useremail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="proc_Changepass" FunctionName="dbProjectModel.Store.proc_Changepass" />
+    <FunctionImportMapping FunctionImportName="proc_DisplayRetailerDetails" FunctionName="dbProjectModel.Store.proc_DisplayRetailerDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbProjectModel.proc_DisplayRetailerDetails_Result">
+          <ScalarProperty Name="productname" ColumnName="productname" />
+          <ScalarProperty Name="productbrand" ColumnName="productbrand" />
+          <ScalarProperty Name="useremail" ColumnName="useremail" />
+          <ScalarProperty Name="productprice" ColumnName="productprice" />
+          <ScalarProperty Name="orderquantity" ColumnName="orderquantity" />
+          <ScalarProperty Name="productstatus" ColumnName="productstatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_RetailLoginCheck" FunctionName="dbProjectModel.Store.proc_RetailLoginCheck">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbProjectModel.proc_RetailLoginCheck_Result">
+          <ScalarProperty Name="retaileremail" ColumnName="retaileremail" />
+          <ScalarProperty Name="retailerpassword" ColumnName="retailerpassword" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tblOrders">
+      <EntityTypeMapping TypeName="dbProjectModel.tblOrder">
+        <MappingFragment StoreEntitySet="tblOrder">
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="orderquantity" ColumnName="orderquantity" />
+          <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+          <ScalarProperty Name="productid" ColumnName="productid" />
+          <ScalarProperty Name="useremail" ColumnName="useremail" />
+          <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRetailers">
+      <EntityTypeMapping TypeName="dbProjectModel.tblRetailer">
+        <MappingFragment StoreEntitySet="tblRetailer">
+          <ScalarProperty Name="approved" ColumnName="approved" />
+          <ScalarProperty Name="retailerpassword" ColumnName="retailerpassword" />
+          <ScalarProperty Name="retaileremail" ColumnName="retaileremail" />
+          <ScalarProperty Name="retailername" ColumnName="retailername" />
+          <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="proc_DisplayProducts" FunctionName="dbProjectModel.Store.proc_DisplayProducts">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbProjectModel.proc_DisplayProducts_Result">
+          <ScalarProperty Name="productid" ColumnName="productid" />
+          <ScalarProperty Name="productname" ColumnName="productname" />
+          <ScalarProperty Name="productprice" ColumnName="productprice" />
+          <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+          <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+          <ScalarProperty Name="productbrand" ColumnName="productbrand" />
+          <ScalarProperty Name="productstatus" ColumnName="productstatus" />
+          <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_UpdateProduct" FunctionName="dbProjectModel.Store.proc_UpdateProduct" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,56 @@
+
+<article>
+    <h4 style="text-align:center;font-family:helvetica;margin-top:35px;color:#404040;font-size:20px">Add Product</h4>
+    
+    <form [formGroup]="addproductForm" (ngSubmit)="AddProduct()">
+    
+    <label >Product Name</label><br>
+    
+    <input type="text" name="pname" id="pname" placeholder="Enter Product Name" formControlName="pname" autofocus><br>
+    <span ><div *ngIf="submitted && f.pname.errors">
+        <div *ngIf="f.pname.errors.required">Product Name required</div>
+        <div *ngIf="f.pname.errors">Invalid Product Name</div>
+    </div></span>
+    
+    <label >Product Price</label><br>
+    
+    <input type="text" name="price" id="pprice" placeholder="Enter Product Price" formControlName="pprice" ><br>
+    <span ><div *ngIf="submitted && f.pprice.errors">
+        <div *ngIf="f.pprice.errors.required">Product Price required</div>
+        <div *ngIf="f.pprice.errors.pattern">Invalid Product Price</div>
+    </div></span>
+    
+    <label >Product Quantity</label><br>
+    
+    <input type="number" name="pquantity" id="pquantity" placeholder="Enter Product Quantity" formControlName="pquantity"><br>
+    <span ><div *ngIf="submitted && f.pquantity.errors">
+        <div *ngIf="f.pquantity.errors.required">Email required</div>
+        <div *ngIf="f.pquantity.errors.pattern">Invalid Email</div>
+    </div></span>
+
+    <label >Product Description</label><br>
+    
+    <input type="text" name="pdescription" id="pdescription" placeholder="Enter Product Description" formControlName="pdescription"><br>
+    <span ><div *ngIf="submitted && f.pdescription.errors">
+        <div *ngIf="f.pdescription.errors.required">Product Description required</div>
+        <div *ngIf="f.pdescription.errors">Invalid Product Description</div>
+    </div></span>
+    
+    <label >Product Brand</label><br>
+    
+    <input type="text" name="pbrand" id="pbrand" placeholder="Enter Product Brand" formControlName="pbrand"><br>
+    <span ><div *ngIf="submitted && f.pbrand.errors">
+        <div *ngIf="f.pbrand.errors.required">Product brand required</div>
+        <div *ngIf="f.pbrand.errors">Invalid Product brand</div>
+    </div></span>
+    
+    <label >Upload Product Image</label><br>
+    <input type="file" style="border: darkgray;font-size:12px;"    name="fileToUpload" id="fileToUpload" formControlName="fileupload">
+    <span ><div *ngIf="submitted && f.fileupload.errors">
+        <div *ngIf="f.fileupload.errors.required">File required</div>
+    </div></span>
+
+    <input type="submit" name="addproduct" id="addproduct" value="Add Product" style="text-align:center;background-color:black;color:white;margin-top:10px">
+    </form>
+    </article>
+

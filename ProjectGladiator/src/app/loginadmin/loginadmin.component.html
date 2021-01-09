@@ -1,0 +1,43 @@
+<p>loginadmin works!</p>
+<section class="Form my-4 mx-5">
+    <div class="container">
+        <div class="row no-gutters">
+            <!-- <div class="col-lg-5">
+                <img src="./assets/Login/retailerlogin.jpg" class="img-fluid">
+            </div> -->
+            <div class="col-lg-7 px-5 pt-5">
+                <h1>Online Shopping App</h1>
+                <h4> Admin Login</h4>
+                <br><br>
+                <form [formGroup] = "loginForm" (ngSubmit) = "DoLogin()">
+                    <div class="form-row">
+                        <div class="form-group col-lg-7">
+                            <label> Email : </label>
+                            <input type = "text" class="form-control" formControlName = "adminemail" >
+                            <div *ngIf = "h.adminemail.errors && h.adminemail.touched" class="text-danger">
+                                <div *ngIf = "h.adminemail.errors.required">Email is required</div>
+                                <div *ngIf = "h.adminemail.errors.email">Email must be a valid email address</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="from-group col-lg-7">
+                            <label> Password : </label>
+                            <input type = "password" class="form-control" formControlName = "adminpassword">
+                            <div *ngIf="h.adminpassword.errors &&h.adminpassword.touched" class="text-danger">
+                                <div *ngIf = "h.adminpassword.errors.required">Password is required</div>
+                                <div *ngIf = "h.adminpassword.errors.minlength">Password must be of minimum 6 characters</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-7">
+                            <button class="btn1 mt-3 mb-5">Login</button>
+                        </div>
+                    </div>
+                    
+                </form>                
+            </div>
+        </div>
+    </div>
+</section>
