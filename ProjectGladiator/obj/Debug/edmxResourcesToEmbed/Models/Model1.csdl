@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblCart">
+    <Key>
+      <PropertyRef Name="cartid" />
+      <PropertyRef Name="productid" />
+    </Key>
+    <Property Name="cartid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="useremail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="productid" Type="Int32" Nullable="false" />
+    <Property Name="cartquantity" Type="Int32" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK__tblCart__product__46E78A0C" FromRole="tblCart" ToRole="tblProduct" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK__tblCart__userema__45F365D3" FromRole="tblCart" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblCategory">
+    <Key>
+      <PropertyRef Name="categoryid" />
+    </Key>
+    <Property Name="categoryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoryname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="categorydescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblProducts" Relationship="Self.FK__tblProduc__categ__4316F928" FromRole="tblCategory" ToRole="tblProduct" />
+  </EntityType>
+  <EntityType Name="tblCompare">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_id" Type="Int32" />
+    <Property Name="useremail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK__tblCompar__Produ__52593CB8" FromRole="tblCompare" ToRole="tblProduct" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK__tblCompar__usere__534D60F1" FromRole="tblCompare" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblProduct">
+    <Key>
+      <PropertyRef Name="productid" />
+    </Key>
+    <Property Name="productid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="productprice" Type="Double" />
+    <Property Name="productquantity" Type="Int32" />
+    <Property Name="productdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="productbrand" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="productimage1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="productnotification" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="productstatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="retailerid" Type="Int32" />
+    <Property Name="categoryid" Type="Int32" />
+    <NavigationProperty Name="tblCarts" Relationship="Self.FK__tblCart__product__46E78A0C" FromRole="tblProduct" ToRole="tblCart" />
+    <NavigationProperty Name="tblCategory" Relationship="Self.FK__tblProduc__categ__4316F928" FromRole="tblProduct" ToRole="tblCategory" />
+    <NavigationProperty Name="tblCompares" Relationship="Self.FK__tblCompar__Produ__52593CB8" FromRole="tblProduct" ToRole="tblCompare" />
+    <NavigationProperty Name="tblWishlists" Relationship="Self.FK__tblWishli__Produ__4E88ABD4" FromRole="tblProduct" ToRole="tblWishlist" />
+    <NavigationProperty Name="tblOrders" Relationship="dbProjectModel.FK__tblOrder__produc__4AB81AF0" FromRole="tblProduct" ToRole="tblOrder" />
+    <NavigationProperty Name="tblRetailer" Relationship="dbProjectModel.FK__tblProduc__retai__4222D4EF" FromRole="tblProduct" ToRole="tblRetailer" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="useremail" />
+    </Key>
+    <Property Name="useremail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="useurname" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userphone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userpassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userapartment" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userstreet" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="usertown" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userstate" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userpincode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usercountry" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblCarts" Relationship="Self.FK__tblCart__userema__45F365D3" FromRole="tblUser" ToRole="tblCart" />
+    <NavigationProperty Name="tblCompares" Relationship="Self.FK__tblCompar__usere__534D60F1" FromRole="tblUser" ToRole="tblCompare" />
+    <NavigationProperty Name="tblWishlists" Relationship="Self.FK__tblWishli__usere__4F7CD00D" FromRole="tblUser" ToRole="tblWishlist" />
+    <NavigationProperty Name="tblOrders" Relationship="dbProjectModel.FK__tblOrder__userem__49C3F6B7" FromRole="tblUser" ToRole="tblOrder" />
+  </EntityType>
+  <EntityType Name="tblWishlist">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_id" Type="Int32" />
+    <Property Name="useremail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK__tblWishli__Produ__4E88ABD4" FromRole="tblWishlist" ToRole="tblProduct" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK__tblWishli__usere__4F7CD00D" FromRole="tblWishlist" ToRole="tblUser" />
+  </EntityType>
+  <Association Name="FK__tblCart__product__46E78A0C">
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="1" />
+    <End Role="tblCart" Type="Self.tblCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduct">
+        <PropertyRef Name="productid" />
+      </Principal>
+      <Dependent Role="tblCart">
+        <PropertyRef Name="productid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblCart__userema__45F365D3">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblCart" Type="Self.tblCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="useremail" />
+      </Principal>
+      <Dependent Role="tblCart">
+        <PropertyRef Name="useremail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblProduc__categ__4316F928">
+    <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="0..1" />
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCategory">
+        <PropertyRef Name="categoryid" />
+      </Principal>
+      <Dependent Role="tblProduct">
+        <PropertyRef Name="categoryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblCompar__Produ__52593CB8">
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1" />
+    <End Role="tblCompare" Type="Self.tblCompare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduct">
+        <PropertyRef Name="productid" />
+      </Principal>
+      <Dependent Role="tblCompare">
+        <PropertyRef Name="Product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblCompar__usere__534D60F1">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblCompare" Type="Self.tblCompare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="useremail" />
+      </Principal>
+      <Dependent Role="tblCompare">
+        <PropertyRef Name="useremail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblWishli__Produ__4E88ABD4">
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1" />
+    <End Role="tblWishlist" Type="Self.tblWishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduct">
+        <PropertyRef Name="productid" />
+      </Principal>
+      <Dependent Role="tblWishlist">
+        <PropertyRef Name="Product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblWishli__usere__4F7CD00D">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblWishlist" Type="Self.tblWishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="useremail" />
+      </Principal>
+      <Dependent Role="tblWishlist">
+        <PropertyRef Name="useremail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblCarts" EntityType="Self.tblCart" />
+    <EntitySet Name="tblCategories" EntityType="Self.tblCategory" />
+    <EntitySet Name="tblCompares" EntityType="Self.tblCompare" />
+    <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <EntitySet Name="tblWishlists" EntityType="Self.tblWishlist" />
+    <AssociationSet Name="FK__tblCart__product__46E78A0C" Association="Self.FK__tblCart__product__46E78A0C">
+      <End Role="tblProduct" EntitySet="tblProducts" />
+      <End Role="tblCart" EntitySet="tblCarts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblCart__userema__45F365D3" Association="Self.FK__tblCart__userema__45F365D3">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="tblCart" EntitySet="tblCarts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblProduc__categ__4316F928" Association="Self.FK__tblProduc__categ__4316F928">
+      <End Role="tblCategory" EntitySet="tblCategories" />
+      <End Role="tblProduct" EntitySet="tblProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblCompar__Produ__52593CB8" Association="Self.FK__tblCompar__Produ__52593CB8">
+      <End Role="tblProduct" EntitySet="tblProducts" />
+      <End Role="tblCompare" EntitySet="tblCompares" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblCompar__usere__534D60F1" Association="Self.FK__tblCompar__usere__534D60F1">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="tblCompare" EntitySet="tblCompares" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblWishli__Produ__4E88ABD4" Association="Self.FK__tblWishli__Produ__4E88ABD4">
+      <End Role="tblProduct" EntitySet="tblProducts" />
+      <End Role="tblWishlist" EntitySet="tblWishlists" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblWishli__usere__4F7CD00D" Association="Self.FK__tblWishli__usere__4F7CD00D">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="tblWishlist" EntitySet="tblWishlists" />
+    </AssociationSet>
+    <FunctionImport Name="proc_Changepass">
+      <Parameter Name="rmail" Mode="In" Type="String" />
+      <Parameter Name="rpass" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_DisplayRetailerDetails" ReturnType="Collection(dbProjectModel.proc_DisplayRetailerDetails_Result)">
+      <Parameter Name="rmail" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_RetailLoginCheck" ReturnType="Collection(dbProjectModel.proc_RetailLoginCheck_Result)">
+      <Parameter Name="rmail" Mode="In" Type="String" />
+      <Parameter Name="pass" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="tblOrders" EntityType="dbProjectModel.tblOrder" />
+    <EntitySet Name="tblRetailers" EntityType="dbProjectModel.tblRetailer" />
+    <AssociationSet Name="FK__tblOrder__produc__4AB81AF0" Association="dbProjectModel.FK__tblOrder__produc__4AB81AF0">
+      <End Role="tblProduct" EntitySet="tblProducts" />
+      <End Role="tblOrder" EntitySet="tblOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrder__retail__4BAC3F29" Association="dbProjectModel.FK__tblOrder__retail__4BAC3F29">
+      <End Role="tblRetailer" EntitySet="tblRetailers" />
+      <End Role="tblOrder" EntitySet="tblOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrder__userem__49C3F6B7" Association="dbProjectModel.FK__tblOrder__userem__49C3F6B7">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="tblOrder" EntitySet="tblOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblProduc__retai__4222D4EF" Association="dbProjectModel.FK__tblProduc__retai__4222D4EF">
+      <End Role="tblRetailer" EntitySet="tblRetailers" />
+      <End Role="tblProduct" EntitySet="tblProducts" />
+    </AssociationSet>
+    <FunctionImport Name="proc_DisplayProducts" ReturnType="Collection(dbProjectModel.proc_DisplayProducts_Result)">
+      <Parameter Name="rmail" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_UpdateProduct">
+      <Parameter Name="rmail" Mode="In" Type="String" />
+      <Parameter Name="pprice" Mode="In" Type="Double" />
+      <Parameter Name="pquantity" Mode="In" Type="Int32" />
+      <Parameter Name="pdescrip" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_RemoveProduct">
+      <Parameter Name="pid" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="proc_DisplayRetailerDetails_Result">
+    <Property Type="String" Name="productname" Nullable="true" />
+    <Property Type="String" Name="productbrand" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="useremail" Nullable="true" MaxLength="255" />
+    <Property Type="Double" Name="productprice" Nullable="true" />
+    <Property Type="Int32" Name="orderquantity" Nullable="true" />
+    <Property Type="String" Name="productstatus" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="proc_RetailLoginCheck_Result">
+    <Property Type="String" Name="retaileremail" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="retailerpassword" Nullable="false" MaxLength="40" />
+  </ComplexType>
+  <EntityType Name="tblOrder">
+    <Key>
+      <PropertyRef Name="orderid" />
+      <PropertyRef Name="productid" />
+    </Key>
+    <Property Name="orderid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="orderdate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="useremail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="productid" Type="Int32" Nullable="false" />
+    <Property Name="retailerid" Type="Int32" />
+    <Property Name="orderquantity" Type="Int32" />
+    <Property Name="price" Type="Double" />
+    <NavigationProperty Name="tblProduct" Relationship="dbProjectModel.FK__tblOrder__produc__4AB81AF0" FromRole="tblOrder" ToRole="tblProduct" />
+    <NavigationProperty Name="tblRetailer" Relationship="dbProjectModel.FK__tblOrder__retail__4BAC3F29" FromRole="tblOrder" ToRole="tblRetailer" />
+    <NavigationProperty Name="tblUser" Relationship="dbProjectModel.FK__tblOrder__userem__49C3F6B7" FromRole="tblOrder" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblRetailer">
+    <Key>
+      <PropertyRef Name="retailerid" />
+    </Key>
+    <Property Name="retailerid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="retailername" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="retaileremail" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="retailerpassword" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="approved" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblOrders" Relationship="dbProjectModel.FK__tblOrder__retail__4BAC3F29" FromRole="tblRetailer" ToRole="tblOrder" />
+    <NavigationProperty Name="tblProducts" Relationship="dbProjectModel.FK__tblProduc__retai__4222D4EF" FromRole="tblRetailer" ToRole="tblProduct" />
+  </EntityType>
+  <Association Name="FK__tblOrder__produc__4AB81AF0">
+    <End Type="dbProjectModel.tblProduct" Role="tblProduct" Multiplicity="1" />
+    <End Type="dbProjectModel.tblOrder" Role="tblOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduct">
+        <PropertyRef Name="productid" />
+      </Principal>
+      <Dependent Role="tblOrder">
+        <PropertyRef Name="productid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrder__retail__4BAC3F29">
+    <End Type="dbProjectModel.tblRetailer" Role="tblRetailer" Multiplicity="0..1" />
+    <End Type="dbProjectModel.tblOrder" Role="tblOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRetailer">
+        <PropertyRef Name="retailerid" />
+      </Principal>
+      <Dependent Role="tblOrder">
+        <PropertyRef Name="retailerid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrder__userem__49C3F6B7">
+    <End Type="dbProjectModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+    <End Type="dbProjectModel.tblOrder" Role="tblOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="useremail" />
+      </Principal>
+      <Dependent Role="tblOrder">
+        <PropertyRef Name="useremail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblProduc__retai__4222D4EF">
+    <End Type="dbProjectModel.tblRetailer" Role="tblRetailer" Multiplicity="0..1" />
+    <End Type="dbProjectModel.tblProduct" Role="tblProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRetailer">
+        <PropertyRef Name="retailerid" />
+      </Principal>
+      <Dependent Role="tblProduct">
+        <PropertyRef Name="retailerid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="proc_DisplayProducts_Result">
+    <Property Type="Int32" Name="productid" Nullable="false" />
+    <Property Type="String" Name="productname" Nullable="true" />
+    <Property Type="Double" Name="productprice" Nullable="true" />
+    <Property Type="Int32" Name="productquantity" Nullable="true" />
+    <Property Type="String" Name="productdescription" Nullable="true" />
+    <Property Type="String" Name="productbrand" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="productstatus" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="categoryname" Nullable="false" />
+  </ComplexType>
+</Schema>
