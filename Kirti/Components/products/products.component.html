@@ -1,0 +1,50 @@
+
+
+
+<div >
+    <table id="productdetails" >
+        <tr id="heading">
+            <th><span>
+                Product ID
+            </span></th>
+            <th><span>
+                Product Name
+            </span></th>
+            <th><span >
+                Product Price
+            </span></th>
+            <th><span >
+                Product Quantity
+            </span></th>
+            <th>
+                <span >
+                    Product Description
+                </span>
+            </th>
+            <th><span >
+                Product Brand
+            </span></th>
+            <!-- <th><span >
+                Product status
+            </span></th> -->
+            <th><span >
+                Category Name
+            </span></th>
+            <th></th>
+        </tr>
+        
+        <tr *ngFor="let product of products">
+           <td>{{product.productid}}</td>        
+            <td>{{product.productname}}</td>
+            <td>&#x20b9;{{product.productprice}}</td>
+            <td>{{product.productquantity}}</td>
+            <td>{{product.productdescription}}</td>
+            <td>{{product.productbrand}} </td>
+            <!-- <td> {{product.productstatus}}</td> -->
+            <td>{{product.categoryname}} </td>
+            <td><a [routerLink]="['/updateproduct']"><button class = "updtbtn" [disabled]="product.productstatus!='accepted' " style="text-align:center;background-color:green;color:white;margin-top:10px">Update Product</button></a></td>
+            <td><button class = "updtbtn"  style="text-align:center;background-color:red;color:white;margin-top:10px" (click)="RemoveProduct()">Remove Product</button></td>
+        </tr>
+        
+    </table>
+</div>
