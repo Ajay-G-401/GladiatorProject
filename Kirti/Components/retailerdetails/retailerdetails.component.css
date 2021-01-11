@@ -21,5 +21,6 @@ span{
 }
 td{
     background-color: white;
+    border: 0.2px solid black;
 }
 

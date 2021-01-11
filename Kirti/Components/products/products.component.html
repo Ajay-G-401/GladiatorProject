@@ -31,6 +31,7 @@
                 Category Name
             </span></th>
             <th></th>
+            <th></th>
         </tr>
         
         <tr *ngFor="let product of products">
@@ -43,7 +44,7 @@
             <!-- <td> {{product.productstatus}}</td> -->
             <td>{{product.categoryname}} </td>
             <td><a [routerLink]="['/updateproduct']"><button class = "updtbtn" [disabled]="product.productstatus!='accepted' " style="text-align:center;background-color:green;color:white;margin-top:10px">Update Product</button></a></td>
-            <td><button class = "updtbtn"  style="text-align:center;background-color:red;color:white;margin-top:10px" (click)="RemoveProduct()">Remove Product</button></td>
+            <td><button class = "updtbtn"  style="text-align:center;background-color:red;color:white;margin-top:10px" (click)="Removeproduct()">Remove Product</button></td>
         </tr>
         
     </table>

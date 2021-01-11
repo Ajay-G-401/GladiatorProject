@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -10,10 +11,13 @@ import { ProductService } from '../services/product.service';
 export class ProductsComponent implements OnInit {
 products:any=[];
 pstatus=true;
+product:Product;
 status:any;
 retaileremail = sessionStorage.getItem('retaileremail');
  
-  constructor(private royter:Router,private productService:ProductService) { }
+  constructor(private royter:Router,private productService:ProductService) { 
+    this.product=new Product();
+  }
 
   ngOnInit(): void {
     this.GetProductDetails(this.retaileremail);
@@ -28,9 +32,9 @@ retaileremail = sessionStorage.getItem('retaileremail');
 
   }
 
-  RemoveProduct(){
+  Removeproduct(){
     
-    this.productService.RemoveProduct(5)
+    this.productService.RemoveProductbyapi(3,this.product)
     .subscribe(
         data =>{
           if(data=="valid"){

@@ -16,18 +16,19 @@ export class ProductService{
         // return this.http.post("http://localhost:50358/api/Retailer",product);
     }
     
-    RemoveProduct(productid:number) 
+    public RemoveProductbyapi(productid:any,product:Product) 
     {
-        return "Product" ;
+        return this.httpClient.post("http://localhost:57202/Remove-Product?id="+productid,product);
+        
     }
    
     
 
     public DisplayProducts(retaileremail:any){
-        return this.httpClient.get("http://localhost:58842/Retailer-ProductDetails?remail="+retaileremail);
+        return this.httpClient.get("http://localhost:57202/Retailer-ProductDetails?remail="+retaileremail);
     }
 
     public UpdateProduct(retaileremail:any,product:Product){
-        return this.httpClient.post("http://localhost:58842/Retailer-UpdateProduct?remail="+retaileremail,product);
+        return this.httpClient.post("http://localhost:57202/Retailer-UpdateProduct?remail="+retaileremail,product);
     }
 }
