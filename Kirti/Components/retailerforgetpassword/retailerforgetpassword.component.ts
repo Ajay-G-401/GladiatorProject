@@ -12,7 +12,7 @@ export class RetailerforgetpasswordComponent implements OnInit {
   forgetPasswordretailerOTPForm: FormGroup;
   otpstatus : boolean = false;
   buttonname : any ='Get OTP';
-  submitted=false;
+ 
   userotp : any;
   checkotp : number=0;
 

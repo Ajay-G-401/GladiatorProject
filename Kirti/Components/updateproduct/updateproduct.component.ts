@@ -13,7 +13,6 @@ export class UpdateproductComponent implements OnInit {
   
   updateproductForm : FormGroup;
   productupdate:Product;
-  submitted=false;
   check:boolean=false;
   checkpassword:any;
   status:any;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup,FormControl,Validators } from '@angular/forms';
+import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Retailer } from '../models/retailer.model';
 import { RetailerService } from '../services/retailer.service';
@@ -18,10 +18,10 @@ export class RetailerregisterComponent implements OnInit {
   RetailerRegister:Retailer;
   retailer:any;
   msg :any;
-  submitted=false;
+  
   constructor(private retailerService:RetailerService,private formBuilder:FormBuilder,private router:Router) { 
     this.RetailerRegister=new Retailer();
-    this.registerForm=formBuilder.group({});
+    this.registerForm = formBuilder.group({})
   }
 
   register()
@@ -43,14 +43,15 @@ export class RetailerregisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       remail:['',[Validators.required,Validators.email]],
       rname:['',[Validators.required,Validators.minLength(4)]],
-      rpassword:['',[Validators.required,,Validators.minLength(8),Validators.maxLength(20),Validators.pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z]))/)]],
-      checkpassword:['',[Validators.required,,Validators.minLength(8),Validators.maxLength(20),Validators.pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z]))/)]],
-    }
-   ,{
-    validators: PasswordCheck("rpassword", "checkpassword"),
+      rpassword : ['',[Validators.required,Validators.minLength(8),Validators.maxLength(20),Validators.pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z]))/)]],
+      confirmpassword : ['',[Validators.required,Validators.minLength(8)]]
+    })
+  //  ,{
+  //   validators: PasswordCheck("rpassword", "checkpassword"),
       
-  });
-  }
+  // }
+}
+    
   get f() { 
     return this.registerForm.controls; 
   }

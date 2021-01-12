@@ -19,8 +19,8 @@ namespace ProjectGladiator.Models
         {
             this.tblCarts = new HashSet<tblCart>();
             this.tblCompares = new HashSet<tblCompare>();
-            this.tblWishlists = new HashSet<tblWishlist>();
             this.tblOrders = new HashSet<tblOrder>();
+            this.tblWishlists = new HashSet<tblWishlist>();
         }
     
         public string useremail { get; set; }
@@ -39,8 +39,8 @@ namespace ProjectGladiator.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCompare> tblCompares { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblWishlist> tblWishlists { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrder> tblOrders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblWishlist> tblWishlists { get; set; }
     }
 }

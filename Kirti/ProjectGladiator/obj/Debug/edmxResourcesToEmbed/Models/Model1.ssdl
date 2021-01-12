@@ -230,6 +230,9 @@
   <Function Name="proc_DisplayRetailerDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="rmail" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="proc_RemoveProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pid" Type="int" Mode="In" />
+  </Function>
   <Function Name="proc_RetailLoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="rmail" Type="varchar" Mode="In" />
     <Parameter Name="pass" Type="varchar" Mode="In" />

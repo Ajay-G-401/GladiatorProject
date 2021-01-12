@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient,HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Product } from "../models/product.model";
 import { Retailer } from "../models/retailer.model";
@@ -16,9 +16,10 @@ export class ProductService{
         // return this.http.post("http://localhost:50358/api/Retailer",product);
     }
     
-    public RemoveProductbyapi(productid:any,product:Product) 
+    public RemoveProductbyapi(productid:any) 
     {
-        return this.httpClient.post("http://localhost:57202/Remove-Product?id="+productid,product);
+        const httpheader={headers:new HttpHeaders({'Content-Type':'text/html'})};
+        return this.httpClient.post("http://localhost:57202/Remove-Product?id="+productid,httpheader);
         
     }
    

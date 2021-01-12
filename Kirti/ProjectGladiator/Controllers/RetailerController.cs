@@ -12,7 +12,7 @@ namespace ProjectGladiator.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class RetailerController : ApiController
     {
-        dbProjectEntities db = new dbProjectEntities();
+        dbProjectEntities3 db = new dbProjectEntities3();
 
         [Route("Retailer-Login")]
         [HttpPost]
@@ -23,12 +23,12 @@ namespace ProjectGladiator.Controllers
                 var result = db.proc_RetailLoginCheck(retailer.retaileremail, retailer.retailerpassword).FirstOrDefault();
                 if (result == null)
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.OK, "Invalid");
+                    return Request.CreateErrorResponse(HttpStatusCode.OK, "invalid");
 
                 }
                 else
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-       
+                    return Request.CreateResponse(HttpStatusCode.OK, "valid");
+
 
             }
             catch (Exception e)
@@ -36,7 +36,7 @@ namespace ProjectGladiator.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, "invalid");
             }
 
-           
+
         }
 
         [Route("Retailer-Details")]
@@ -61,7 +61,7 @@ namespace ProjectGladiator.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, "invalid");
             }
 
-            
+
         }
 
         [Route("Retailer-ProductDetails")]
@@ -112,7 +112,37 @@ namespace ProjectGladiator.Controllers
             try
             {
                 var changepass = db.proc_Changepass(retailer.retaileremail, retailer.retailerpassword);
-                return Request.CreateResponse(HttpStatusCode.OK, "valid");
+                if (changepass == null)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.OK, "invalid");
+
+                }
+                else
+                    return Request.CreateResponse(HttpStatusCode.OK, "valid");
+
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, "invalid");
+            }
+
+        }
+
+
+        [Route("Remove-Product")]
+        [HttpPost]
+        public HttpResponseMessage RemoveProduct(int id)
+        {
+            try
+            {
+                var removeproduct = db.proc_RemoveProduct(id);
+                if (removeproduct == null)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.OK, "invalid");
+
+                }
+                else
+                    return Request.CreateResponse(HttpStatusCode.OK, removeproduct);
 
             }
             catch (Exception e)
@@ -124,11 +154,11 @@ namespace ProjectGladiator.Controllers
 
         [Route("Retailer-UpdateProduct")]
         [HttpPost]
-        public HttpResponseMessage RetailerUpdateProduct(tblProduct product,string remail)
+        public HttpResponseMessage RetailerUpdateProduct(tblProduct product, string remail)
         {
             try
             {
-                var updateproduct = db.proc_UpdateProduct(remail,product.productprice,product.productquantity,product.productdescription);
+                var updateproduct = db.proc_UpdateProduct(remail, product.productprice, product.productquantity, product.productdescription);
                 return Request.CreateResponse(HttpStatusCode.OK, updateproduct);
 
             }
@@ -139,4 +169,5 @@ namespace ProjectGladiator.Controllers
 
         }
     }
+    
 }

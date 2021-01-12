@@ -15,10 +15,10 @@ namespace ProjectGladiator.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class dbProjectEntities : DbContext
+    public partial class dbProjectEntities3 : DbContext
     {
-        public dbProjectEntities()
-            : base("name=dbProjectEntities")
+        public dbProjectEntities3()
+            : base("name=dbProjectEntities3")
         {
         }
     
@@ -30,11 +30,11 @@ namespace ProjectGladiator.Models
         public virtual DbSet<tblCart> tblCarts { get; set; }
         public virtual DbSet<tblCategory> tblCategories { get; set; }
         public virtual DbSet<tblCompare> tblCompares { get; set; }
+        public virtual DbSet<tblOrder> tblOrders { get; set; }
         public virtual DbSet<tblProduct> tblProducts { get; set; }
+        public virtual DbSet<tblRetailer> tblRetailers { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
         public virtual DbSet<tblWishlist> tblWishlists { get; set; }
-        public virtual DbSet<tblOrder> tblOrders { get; set; }
-        public virtual DbSet<tblRetailer> tblRetailers { get; set; }
     
         public virtual int proc_Changepass(string rmail, string rpass)
         {
@@ -49,6 +49,15 @@ namespace ProjectGladiator.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Changepass", rmailParameter, rpassParameter);
         }
     
+        public virtual ObjectResult<proc_DisplayProducts_Result> proc_DisplayProducts(string rmail)
+        {
+            var rmailParameter = rmail != null ?
+                new ObjectParameter("rmail", rmail) :
+                new ObjectParameter("rmail", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_DisplayProducts_Result>("proc_DisplayProducts", rmailParameter);
+        }
+    
         public virtual ObjectResult<proc_DisplayRetailerDetails_Result> proc_DisplayRetailerDetails(string rmail)
         {
             var rmailParameter = rmail != null ?
@@ -56,6 +65,15 @@ namespace ProjectGladiator.Models
                 new ObjectParameter("rmail", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_DisplayRetailerDetails_Result>("proc_DisplayRetailerDetails", rmailParameter);
+        }
+    
+        public virtual int proc_RemoveProduct(Nullable<int> pid)
+        {
+            var pidParameter = pid.HasValue ?
+                new ObjectParameter("pid", pid) :
+                new ObjectParameter("pid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_RemoveProduct", pidParameter);
         }
     
         public virtual ObjectResult<proc_RetailLoginCheck_Result> proc_RetailLoginCheck(string rmail, string pass)
@@ -69,15 +87,6 @@ namespace ProjectGladiator.Models
                 new ObjectParameter("pass", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_RetailLoginCheck_Result>("proc_RetailLoginCheck", rmailParameter, passParameter);
-        }
-    
-        public virtual ObjectResult<proc_DisplayProducts_Result> proc_DisplayProducts(string rmail)
-        {
-            var rmailParameter = rmail != null ?
-                new ObjectParameter("rmail", rmail) :
-                new ObjectParameter("rmail", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_DisplayProducts_Result>("proc_DisplayProducts", rmailParameter);
         }
     
         public virtual int proc_UpdateProduct(string rmail, Nullable<double> pprice, Nullable<int> pquantity, string pdescrip)

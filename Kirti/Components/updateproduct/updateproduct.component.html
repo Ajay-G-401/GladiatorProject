@@ -8,7 +8,7 @@
     <label >Product Price</label><br>
     
     <input type="text" name="price" id="pprice" placeholder="Enter Product Price" formControlName="pprice" [(ngModel)]="productupdate.productprice"><br>
-    <span ><div *ngIf="submitted && f.pprice.errors">
+    <span ><div *ngIf="f.pprice.touched && f.pprice.errors">
         <div *ngIf="f.pprice.errors.required">Product Price required</div>
         <div *ngIf="f.pprice.errors.pattern">Invalid Product Price</div>
     </div></span>
@@ -16,7 +16,7 @@
     <label >Product Quantity</label><br>
     
     <input type="number" name="pquantity" id="pquantity" placeholder="Enter Product Quantity" formControlName="pquantity" [(ngModel)]="productupdate.productquantity"><br>
-    <span ><div *ngIf="submitted && f.pquantity.errors">
+    <span ><div *ngIf="f.pquantity.touched && f.pquantity.errors">
         <div *ngIf="f.pquantity.errors.required">Email required</div>
         <div *ngIf="f.pquantity.errors.pattern">Invalid Email</div>
     </div></span>
@@ -24,7 +24,7 @@
     <label >Product Description</label><br>
     
     <input type="text" name="pdescription" id="pdescription" placeholder="Enter Product Description" formControlName="pdescription" [(ngModel)]="productupdate.productdescription"><br>
-    <span ><div *ngIf="submitted && f.pdescription.errors">
+    <span ><div *ngIf="f.pdescription.touched && f.pdescription.errors">
         <div *ngIf="f.pdescription.errors.required">Product Description required</div>
         <div *ngIf="f.pdescription.errors">Invalid Product Description</div>
     </div></span>

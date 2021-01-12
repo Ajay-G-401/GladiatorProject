@@ -13,6 +13,7 @@ products:any=[];
 pstatus=true;
 product:Product;
 status:any;
+pnot:string="";
 retaileremail = sessionStorage.getItem('retaileremail');
  
   constructor(private royter:Router,private productService:ProductService) { 
@@ -32,12 +33,12 @@ retaileremail = sessionStorage.getItem('retaileremail');
 
   }
 
-  Removeproduct(){
+  Removeproduct(productid:number){
     
-    this.productService.RemoveProductbyapi(3,this.product)
+    this.productService.RemoveProductbyapi(productid)
     .subscribe(
-        data =>{
-          if(data=="valid"){
+        r =>{
+          if(r==1){
               
               alert('Product removed successfully');
               // this.router.navigate(['retailerprofile']);

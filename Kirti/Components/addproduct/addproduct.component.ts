@@ -12,7 +12,7 @@ import { ProductService } from '../services/product.service';
 export class AddproductComponent implements OnInit {
   product:Product
   addproductForm : FormGroup;
-  submitted=false;
+ 
   check:boolean=false;
   checkpassword:any;
   status:any;
@@ -45,7 +45,7 @@ export class AddproductComponent implements OnInit {
   {
     //this.userservice.addUser(user);
     //this.user=new User()
-    this.submitted = true;
+   
 
       if (this.addproductForm.invalid) {
           return;

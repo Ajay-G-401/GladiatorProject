@@ -27,10 +27,11 @@ export class RetailerloginComponent implements OnInit {
    this.status = this.retailerService.RetailerLogin(this.RetailerLogin).subscribe(
       data =>{
         if(data=="valid"){
-            console.log(this.loginForm.value.retaileremail);
+          console.log(this.loginForm.value.retaileremail);
             sessionStorage.setItem('retaileremail',this.RetailerLogin.retaileremail);
             alert('Login Successful');
             // this.router.navigate(['retailerprofile']);
+          
         }
         else {
           alert('Invalid credentials or Retailer is either pending or rejected');

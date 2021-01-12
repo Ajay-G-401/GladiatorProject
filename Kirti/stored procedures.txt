@@ -49,3 +49,16 @@ begin
 	where p.retailerid =(select retailerid from tblRetailer where retaileremail=@rmail)
 
 end
+
+------------------------------Remove Product---------------------------------------
+
+create proc proc_RemoveProduct(@pid int)
+as 
+begin
+	update tblProduct 
+	set productnotification='remove', productstatus='pending'
+	where productid=@pid and productnotification not in ('remove')
+
+end
+
+proc_RemoveProduct 4

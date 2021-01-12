@@ -8,30 +8,40 @@
     </div>
   <label >Email: </label><br>
   
-  <input type="text" formControlName="remail" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.remail.errors }"  [(ngModel)]="RetailerRegister.retaileremail" autofocus/>
+  <input type="text" formControlName="remail" class="form-control"  [ngClass]="{ 'is-invalid': f.remail.touched && f.remail.errors }"  [(ngModel)]="RetailerRegister.retaileremail" autofocus/>
   <span>
     
-    <div *ngIf="submitted && f.remail.errors" class="invalid-feedback">
+    <div *ngIf="f.remail.touched && f.remail.errors" class="invalid-feedback">
       <div *ngIf="f.remail.errors.required">Please enter the email</div>
     </div>
 </span>
   <label >Password: </label><br>
   
-  <input type="password" formControlName="rpassword" class="form-control" [(ngModel)]="RetailerRegister.retailerpassword"  [ngClass]="{ 'is-invalid': submitted && f.rpassword.errors }"/>
+  <input type="password" formControlName="rpassword" class="form-control" [(ngModel)]="RetailerRegister.retailerpassword"  [ngClass]="{ 'is-invalid': f.rpassword.touched && f.rpassword.errors }"/>
        <br>
   <span >
-       <div *ngIf="submitted && f.rpassword.errors" class="invalid-feedback">
+       <div *ngIf="f.rpassword.touched && f.rpassword.errors" class="invalid-feedback">
          <div *ngIf="f.rpassword.errors">Password should be atleast 8 char contain one [A-Z],one [a-z] and one [0-9]</div>
+       </div>
+  </span>
+
+  <label >Confirm Password: </label><br>
+  
+  <input type="password" formControlName="confirmpassword" class="form-control" [(ngModel)]="RetailerRegister.retailerpassword"  [ngClass]="{ 'is-invalid': f.confirmpassword.touched && f.confirmpassword.errors }"/>
+       <br>
+  <span >
+       <div *ngIf="f.confirmpassword.touched && f.confirmpassword.errors" class="invalid-feedback">
+         <div *ngIf="f.confirmpassword.errors">Password should be atleast 8 char contain one [A-Z],one [a-z] and one [0-9]</div>
        </div>
   </span>
   
   <label >Name: </label><br>
   
-  <input type="text" formControlName="rname" class="form-control" [(ngModel)]="RetailerRegister.retailername"  [ngClass]="{ 'is-invalid': submitted && f.rname.errors }"/>
+  <input type="text" formControlName="rname" class="form-control" [(ngModel)]="RetailerRegister.retailername"  [ngClass]="{ 'is-invalid': f.rname.touched && f.rname.errors }"/>
        <br>
   <span >
     
-    <div *ngIf="submitted && f.rname.errors" class="invalid-feedback">
+    <div *ngIf="f.rname.touched && f.rname.errors" class="invalid-feedback">
       <div *ngIf="f.rname.errors.required">Please enter the name</div>
     </div>
   </span>

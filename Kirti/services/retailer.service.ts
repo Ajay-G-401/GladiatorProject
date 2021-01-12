@@ -10,19 +10,19 @@ export class RetailerService{
     }
     
     public RetailerLogin(retailer:Retailer){
-        return this.httpClient.post("http://localhost:58842/Retailer-Login",retailer);
+        return this.httpClient.post("http://localhost:57202/Retailer-Login",retailer);
     }
 
     public RetailerRegistration(retailer:Retailer){
-        return this.httpClient.post("http://localhost:58842/Retailer-Register",retailer);
+        return this.httpClient.post("http://localhost:57202/Retailer-Register",retailer);
     }
 
     public RetailerChangePass(retailer:Retailer){
-        return this.httpClient.post("http://localhost:58842/Retailer-Changepass",retailer);
+        return this.httpClient.post("http://localhost:57202/Retailer-Changepass",retailer);
     }
 
     public RetailerDetails(retaileremail:any){
-        return this.httpClient.get("http://localhost:58842/Retailer-Details?remail="+retaileremail);
+        return this.httpClient.get("http://localhost:57202/Retailer-Details?remail="+retaileremail);
     }
     
 }
