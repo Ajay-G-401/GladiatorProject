@@ -26,7 +26,7 @@ retaileremail = sessionStorage.getItem('retaileremail');
   
   GetProductDetails(retaileremail:any){
     
-    this.productService.DisplayProducts("Retailer@gmail.com")
+    this.productService.DisplayProducts(this.retaileremail)
     .subscribe(productdets=>{
       this.products=productdets
     })

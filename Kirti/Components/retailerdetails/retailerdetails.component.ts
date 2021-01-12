@@ -21,7 +21,7 @@ export class RetailerdetailsComponent implements OnInit {
   }
    GetRetailerDetails(retaileremail:any){
     
-    this.retailerService.RetailerDetails("Retailer@gmail.com").subscribe(retailerdets=>{this.retailers=retailerdets})
+    this.retailerService.RetailerDetails(this.retaileremail).subscribe(retailerdets=>{this.retailers=retailerdets})
 
   }
 }
