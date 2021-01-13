@@ -16,19 +16,19 @@ namespace ProjectGladiator.Controllers
 
         [Route("Retailer-Login")]
         [HttpPost]
-        public HttpResponseMessage RetailerLogin(tblRetailer retailer)
+       public HttpResponseMessage RetailerLogin(tblRetailer retailer)
         {
             try
             {
                 var result = db.proc_RetailLoginCheck(retailer.retaileremail, retailer.retailerpassword).FirstOrDefault();
                 if (result == null)
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.OK, "Invalid");
+                    return Request.CreateResponse(HttpStatusCode.OK, "invalid");
 
                 }
                 else
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-       
+                    return Request.CreateResponse(HttpStatusCode.OK, "valid");
+
 
             }
             catch (Exception e)
@@ -36,7 +36,7 @@ namespace ProjectGladiator.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, "invalid");
             }
 
-           
+
         }
 
         [Route("Retailer-Details")]
