@@ -1,27 +1,34 @@
-
 <article>
-    <h4 style="text-align:center;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;margin-top:35px;color:#3b0606;font-size:50px">Welcome!</h4>
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <label for="uname">Username</label><br>
+    <h4 style="text-align:center;font-family:helvetica;margin-top:35px;color:#404040;font-size:20px">Retailer Login</h4>
     
-    <input type="text" formControlName="Retailerloginname" name="uname" id="uname" placeholder="Please enter Username" required><br>
-    <span style="color:red" ><div *ngIf="submitted && f.Retailerloginname.errors">
-      <div *ngIf="f.Retailerloginname.errors.required">Username required</div>
-      <div *ngIf="f.Retailerloginname.errors.pattern">Invalid Username</div></div></span>
-    <label for="pwd">Password</label><br>
+    <form [formGroup] = "loginForm" >
+        <div *ngIf="msg">
+            {{msg}}
+          </div>
+    <label >Email: </label><br>
     
-    <input type="password" formControlName="Retailerloginpassword" name="pwd" id="pwd" placeholder="Please enter Password"  required><br>
-    <span style="color:red" ><div *ngIf="submitted && f.Retailerloginpassword.errors">
-      <div *ngIf="f.Retailerloginpassword.errors.required">Password required</div>
-      <div *ngIf="f.Retailerloginpassword.errors.pattern">Invalid Password</div></div></span>
-    <input type="submit" name="register" id="register" value="Login" style="text-align:center;background-color:rgb(32, 95, 53);color:white;" ><br>
+    <input type = "text" class="form-control" [(ngModel)]="RetailerLogin.retaileremail"
+    formControlName = "retaileremail" autofocus>
+    <span>
+        <div *ngIf = "h.retaileremail.errors && h.retaileremail.touched" class="text-danger">
+            <div *ngIf = "h.retaileremail.errors.required">Email is required</div>
+            <div *ngIf = "h.retaileremail.errors.email">Email must be a valid email address</div>
+        </div>
+</span>
+    <label >Password: </label><br>
     
-  <input type="checkbox" id="check" style="float:left;width:15px" checked>
+    <input type = "password" class="form-control" formControlName = "retailerpassword" [(ngModel)]="RetailerLogin.retailerpassword"><br>
+    <span >
+         <div *ngIf="h.retailerpassword.errors &&h.retailerpassword.touched" class="text-danger">
+                                <div *ngIf = "h.retailerpassword.errors.required">Password is required</div>
+                                <div *ngIf = "h.retailerpassword.errors.minlength">Password must be of minimum 6 characters</div>
+                            </div>
+                        </span>
     
-    <label for="check" style="color:rgb(17, 9, 9);margin:15px;padding-top:25px;line-height:23px">Remember me</label>
-    </form>
-    <section>
-    <input type="submit" id="cancel" value="Cancel">
-    <p>Forgot<a href="#" style="font-size:15px;color:rgb(83, 16, 72);text-decoration:underline;padding:5px;">Password?</a></p>
-    </section>
+        <input type="submit" name="changepass" id="changepass" value="Login" style="text-align:center;background-color:black;color:white;margin-top:10px" (click)="Login()">
+       
+            <a [routerLink]="['/retailerforgotpassword']">Forgot Password?</a><br>
+            <p>Don't have an account ? <a [routerLink]="['/retailerlogin']">Create Account</a></p>
+        
+</form>
     </article>

@@ -11,69 +11,44 @@ import { RetailerService } from '../services/retailer.service';
 })
 export class RetailerLoginComponent implements OnInit 
 {
-  retailer:Retailer;
-  loginForm:FormGroup;
-  submitted:boolean=false;
-  check:boolean=false;
-  checkpassword:any;
+   loginForm:FormGroup;
   status:any;
-
-  constructor(private retailerservice:RetailerService,private formBuilder: FormBuilder)
-   { 
-    this.retailer=new Retailer();
-    this.loginForm=formBuilder.group({})
-
-   
+  RetailerLogin:Retailer;
+  retailer:any;
+  msg :any;
+  constructor(private retailerService:RetailerService,private formBuilder:FormBuilder,private router:Router) {
+    this.loginForm= formBuilder.group({});
+    this.RetailerLogin = new Retailer();
    }
-   login()
-   {
-     //this.userservice.addUser(user);
-     //this.user=new User()
-     this.submitted = true;
-     console.log(this.retailer.retailerpassword)
-     console.log(this.checkpassword)
-     if(this.retailer.retailerpassword!=this.checkpassword)
-     {
-       console.log(this.retailer.retailerpassword)
-       console.log(this.checkpassword)
-       this.check=true;
-     }
-     else{
-       this.check=false;
-     }
    
-       if (this.loginForm.invalid) {
-           return;
-       }
-       else
-       {
-          this.status = this.retailerservice.AddRetailer(this.retailer)
-         //.subscribe(
-         //     data=> {
-         //       if(data == "success"){
-         //         alert("Successfully registered");
-         //         this.router.navigate(['userlogin']);
-         //       }else{
-         //         alert("Email id is already registered");
-         //       }
-         //     }
-         //   )
-       }
-   }
-
-  ngOnInit(): void 
-  {
-    this.loginForm = this.formBuilder.group({
-      Retailerloginname:['',[Validators.required,Validators.minLength(4),Validators.pattern('^[A-Za-z]$')]],
-      Retailerloginpassword:['',[Validators.required,,Validators.minLength(8),Validators.maxLength(20),Validators.pattern('/((?=.*\d)(?=.*[a-z])(?=.*[A-Z]))/')]],
-      
-     
-  });
-
-  }
+   
   
-  get f() { 
+  Login(){
+   this.status = this.retailerService.RetailerLogin(this.RetailerLogin).subscribe(
+      data =>{
+        if(data=="valid"){
+          console.log(this.loginForm.value.retaileremail);
+            sessionStorage.setItem('retaileremail',this.RetailerLogin.retaileremail);
+            alert('Login Successful');
+            // this.router.navigate(['retailerprofile']);
+          
+        }
+        else {
+          alert('Invalid credentials or Retailer is either pending or rejected');
+        }
+      })
+  }
+
+  
+
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      retaileremail :['',[Validators.email, Validators.required]],
+        retailerpassword:['',[Validators.required,,Validators.minLength(8),Validators.maxLength(20),Validators.pattern('/((?=.*\d)(?=.*[a-z])(?=.*[A-Z]))/')]],
+    });
+  }
+
+  get h() { 
     return this.loginForm.controls; 
   }
-
 }
