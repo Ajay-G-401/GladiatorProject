@@ -18,7 +18,7 @@ end
 --------------------Retailer Display Products-------------------------------
 
 
-create proc proc_DisplayProducts(@rmail varchar(40))
+alter proc proc_DisplayProducts(@rmail varchar(40))
 as 
 begin
 	select p.productid,p.productname,p.productprice,p.productquantity,p.productdescription,p.productbrand,p.productstatus,c.categoryname
@@ -26,16 +26,19 @@ begin
 	on p.retailerid=r.retailerid 
 	join tblCategory c
 	on p.categoryid=c.categoryid
-	where p.retailerid =(select retailerid from tblRetailer where retaileremail=@rmail)
+	where p.retailerid =(select retailerid from tblRetailer where retaileremail=@rmail) 
+	and p.productnotification not in ('remove') 
+	and p.productstatus not in ('pending','rejected')
 
 end
 
 ----------------------Retailer Update Product------------------------------
 
-create proc proc_UpdateProduct(@rmail varchar(40),@pprice float,@pquantity int,@pdescrip nvarchar(max))
+create proc proc_UpdateProduct(@rmail varchar(40),@id int,@pprice float,@pquantity int,@pdescrip nvarchar(max))
 as 
 begin
-	update tblProduct set productprice=@pprice,productquantity=@pquantity,productdescription=@pdescrip, productnotification='updated',productstatus='pending' where retailerid=(select retailerid from tblRetailer where retaileremail=@rmail)
+	update tblProduct set productprice=@pprice,productquantity=@pquantity,productdescription=@pdescrip, productnotification='updated',productstatus='pending' 
+	where retailerid=(select retailerid from tblRetailer where retaileremail=@rmail) and productid=@id and productnotification not in ('updated') and productstatus not in ('pending')
 end
 
 -------------------------Display Retailer Details--------------------------

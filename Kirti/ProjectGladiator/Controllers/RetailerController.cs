@@ -12,7 +12,7 @@ namespace ProjectGladiator.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class RetailerController : ApiController
     {
-        dbProjectEntities3 db = new dbProjectEntities3();
+        dbProjectEntities7 db = new dbProjectEntities7();
 
         [Route("Retailer-Login")]
         [HttpPost]
@@ -23,7 +23,7 @@ namespace ProjectGladiator.Controllers
                 var result = db.proc_RetailLoginCheck(retailer.retaileremail, retailer.retailerpassword).FirstOrDefault();
                 if (result == null)
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.OK, "invalid");
+                    return Request.CreateResponse(HttpStatusCode.OK, "invalid");
 
                 }
                 else
@@ -154,20 +154,16 @@ namespace ProjectGladiator.Controllers
 
         [Route("Retailer-UpdateProduct")]
         [HttpPost]
-        public HttpResponseMessage RetailerUpdateProduct(tblProduct product, string remail)
+        public HttpResponseMessage RetailerUpdateProduct(tblProduct product, string remail, int id)
         {
-            try
-            {
-                var updateproduct = db.proc_UpdateProduct(remail, product.productprice, product.productquantity, product.productdescription);
-                return Request.CreateResponse(HttpStatusCode.OK, updateproduct);
 
-            }
-            catch (Exception e)
-            {
-                return Request.CreateResponse(HttpStatusCode.OK, "invalid");
-            }
+            var updateproduct = db.proc_UpdateProduct(remail, id, product.productprice, product.productquantity, product.productdescription);
+            return Request.CreateResponse(HttpStatusCode.OK, updateproduct);
 
         }
+
+
+
     }
-    
+
 }

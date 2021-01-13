@@ -15,10 +15,10 @@ namespace ProjectGladiator.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class dbProjectEntities3 : DbContext
+    public partial class dbProjectEntities7 : DbContext
     {
-        public dbProjectEntities3()
-            : base("name=dbProjectEntities3")
+        public dbProjectEntities7()
+            : base("name=dbProjectEntities7")
         {
         }
     
@@ -27,6 +27,7 @@ namespace ProjectGladiator.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tblCart> tblCarts { get; set; }
         public virtual DbSet<tblCategory> tblCategories { get; set; }
         public virtual DbSet<tblCompare> tblCompares { get; set; }
@@ -35,6 +36,94 @@ namespace ProjectGladiator.Models
         public virtual DbSet<tblRetailer> tblRetailers { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
         public virtual DbSet<tblWishlist> tblWishlists { get; set; }
+    
+        public virtual int pro_addproduct(string pname, Nullable<double> pprice, Nullable<int> pquantity, string pdescrip, string pbrand, string pimg)
+        {
+            var pnameParameter = pname != null ?
+                new ObjectParameter("pname", pname) :
+                new ObjectParameter("pname", typeof(string));
+    
+            var ppriceParameter = pprice.HasValue ?
+                new ObjectParameter("pprice", pprice) :
+                new ObjectParameter("pprice", typeof(double));
+    
+            var pquantityParameter = pquantity.HasValue ?
+                new ObjectParameter("pquantity", pquantity) :
+                new ObjectParameter("pquantity", typeof(int));
+    
+            var pdescripParameter = pdescrip != null ?
+                new ObjectParameter("pdescrip", pdescrip) :
+                new ObjectParameter("pdescrip", typeof(string));
+    
+            var pbrandParameter = pbrand != null ?
+                new ObjectParameter("pbrand", pbrand) :
+                new ObjectParameter("pbrand", typeof(string));
+    
+            var pimgParameter = pimg != null ?
+                new ObjectParameter("pimg", pimg) :
+                new ObjectParameter("pimg", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pro_addproduct", pnameParameter, ppriceParameter, pquantityParameter, pdescripParameter, pbrandParameter, pimgParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> pro_RetailerLoginCheck(string rmail, string pass)
+        {
+            var rmailParameter = rmail != null ?
+                new ObjectParameter("rmail", rmail) :
+                new ObjectParameter("rmail", typeof(string));
+    
+            var passParameter = pass != null ?
+                new ObjectParameter("pass", pass) :
+                new ObjectParameter("pass", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("pro_RetailerLoginCheck", rmailParameter, passParameter);
+        }
+    
+        public virtual int proc_AddProduct(string pname, Nullable<double> pprice, Nullable<int> pquantity, string pdescrip, string pbrand, string pimg)
+        {
+            var pnameParameter = pname != null ?
+                new ObjectParameter("pname", pname) :
+                new ObjectParameter("pname", typeof(string));
+    
+            var ppriceParameter = pprice.HasValue ?
+                new ObjectParameter("pprice", pprice) :
+                new ObjectParameter("pprice", typeof(double));
+    
+            var pquantityParameter = pquantity.HasValue ?
+                new ObjectParameter("pquantity", pquantity) :
+                new ObjectParameter("pquantity", typeof(int));
+    
+            var pdescripParameter = pdescrip != null ?
+                new ObjectParameter("pdescrip", pdescrip) :
+                new ObjectParameter("pdescrip", typeof(string));
+    
+            var pbrandParameter = pbrand != null ?
+                new ObjectParameter("pbrand", pbrand) :
+                new ObjectParameter("pbrand", typeof(string));
+    
+            var pimgParameter = pimg != null ?
+                new ObjectParameter("pimg", pimg) :
+                new ObjectParameter("pimg", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_AddProduct", pnameParameter, ppriceParameter, pquantityParameter, pdescripParameter, pbrandParameter, pimgParameter);
+        }
+    
+        public virtual int proc_AddRetailer(string rname, string rmail, string rpass)
+        {
+            var rnameParameter = rname != null ?
+                new ObjectParameter("rname", rname) :
+                new ObjectParameter("rname", typeof(string));
+    
+            var rmailParameter = rmail != null ?
+                new ObjectParameter("rmail", rmail) :
+                new ObjectParameter("rmail", typeof(string));
+    
+            var rpassParameter = rpass != null ?
+                new ObjectParameter("rpass", rpass) :
+                new ObjectParameter("rpass", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_AddRetailer", rnameParameter, rmailParameter, rpassParameter);
+        }
     
         public virtual int proc_Changepass(string rmail, string rpass)
         {
@@ -76,6 +165,36 @@ namespace ProjectGladiator.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_RemoveProduct", pidParameter);
         }
     
+        public virtual ObjectResult<proc_RetailerLoginCheck_Result> proc_RetailerLoginCheck(string rmail, string pass)
+        {
+            var rmailParameter = rmail != null ?
+                new ObjectParameter("rmail", rmail) :
+                new ObjectParameter("rmail", typeof(string));
+    
+            var passParameter = pass != null ?
+                new ObjectParameter("pass", pass) :
+                new ObjectParameter("pass", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_RetailerLoginCheck_Result>("proc_RetailerLoginCheck", rmailParameter, passParameter);
+        }
+    
+        public virtual int proc_RetailerRegister(string rname, string rmail, string rpass)
+        {
+            var rnameParameter = rname != null ?
+                new ObjectParameter("rname", rname) :
+                new ObjectParameter("rname", typeof(string));
+    
+            var rmailParameter = rmail != null ?
+                new ObjectParameter("rmail", rmail) :
+                new ObjectParameter("rmail", typeof(string));
+    
+            var rpassParameter = rpass != null ?
+                new ObjectParameter("rpass", rpass) :
+                new ObjectParameter("rpass", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_RetailerRegister", rnameParameter, rmailParameter, rpassParameter);
+        }
+    
         public virtual ObjectResult<proc_RetailLoginCheck_Result> proc_RetailLoginCheck(string rmail, string pass)
         {
             var rmailParameter = rmail != null ?
@@ -89,11 +208,15 @@ namespace ProjectGladiator.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_RetailLoginCheck_Result>("proc_RetailLoginCheck", rmailParameter, passParameter);
         }
     
-        public virtual int proc_UpdateProduct(string rmail, Nullable<double> pprice, Nullable<int> pquantity, string pdescrip)
+        public virtual int proc_UpdateProduct(string rmail, Nullable<int> id, Nullable<double> pprice, Nullable<int> pquantity, string pdescrip)
         {
             var rmailParameter = rmail != null ?
                 new ObjectParameter("rmail", rmail) :
                 new ObjectParameter("rmail", typeof(string));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
     
             var ppriceParameter = pprice.HasValue ?
                 new ObjectParameter("pprice", pprice) :
@@ -107,7 +230,156 @@ namespace ProjectGladiator.Models
                 new ObjectParameter("pdescrip", pdescrip) :
                 new ObjectParameter("pdescrip", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_UpdateProduct", rmailParameter, ppriceParameter, pquantityParameter, pdescripParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_UpdateProduct", rmailParameter, idParameter, ppriceParameter, pquantityParameter, pdescripParameter);
+        }
+    
+        public virtual int proc_uploadProduct(string pname, Nullable<double> pprice, Nullable<int> pquantity, string pdescrip, string pbrand, string pimg)
+        {
+            var pnameParameter = pname != null ?
+                new ObjectParameter("pname", pname) :
+                new ObjectParameter("pname", typeof(string));
+    
+            var ppriceParameter = pprice.HasValue ?
+                new ObjectParameter("pprice", pprice) :
+                new ObjectParameter("pprice", typeof(double));
+    
+            var pquantityParameter = pquantity.HasValue ?
+                new ObjectParameter("pquantity", pquantity) :
+                new ObjectParameter("pquantity", typeof(int));
+    
+            var pdescripParameter = pdescrip != null ?
+                new ObjectParameter("pdescrip", pdescrip) :
+                new ObjectParameter("pdescrip", typeof(string));
+    
+            var pbrandParameter = pbrand != null ?
+                new ObjectParameter("pbrand", pbrand) :
+                new ObjectParameter("pbrand", typeof(string));
+    
+            var pimgParameter = pimg != null ?
+                new ObjectParameter("pimg", pimg) :
+                new ObjectParameter("pimg", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_uploadProduct", pnameParameter, ppriceParameter, pquantityParameter, pdescripParameter, pbrandParameter, pimgParameter);
+        }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_RetailerRegister(string rname, string rmail, string rpass)
+        {
+            var rnameParameter = rname != null ?
+                new ObjectParameter("rname", rname) :
+                new ObjectParameter("rname", typeof(string));
+    
+            var rmailParameter = rmail != null ?
+                new ObjectParameter("rmail", rmail) :
+                new ObjectParameter("rmail", typeof(string));
+    
+            var rpassParameter = rpass != null ?
+                new ObjectParameter("rpass", rpass) :
+                new ObjectParameter("rpass", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RetailerRegister", rnameParameter, rmailParameter, rpassParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     }
 }

@@ -24,7 +24,7 @@ namespace ProjectGladiator.Models
         }
     
         public string useremail { get; set; }
-        public string useurname { get; set; }
+        public string username { get; set; }
         public string userphone { get; set; }
         public string userpassword { get; set; }
         public string userapartment { get; set; }

@@ -29,7 +29,7 @@ export class ProductService{
         return this.httpClient.get("http://localhost:57202/Retailer-ProductDetails?remail="+retaileremail);
     }
 
-    public UpdateProduct(retaileremail:any,product:Product){
-        return this.httpClient.post("http://localhost:57202/Retailer-UpdateProduct?remail="+retaileremail,product);
+    public UpdateProduct(retaileremail:any,id:any,product:Product){
+        return this.httpClient.post("http://localhost:57202/Retailer-UpdateProduct?remail="+retaileremail+"&id="+id,product);
     }
 }

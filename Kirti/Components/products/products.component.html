@@ -1,7 +1,7 @@
 
 
 
-<div >
+<div  >
     <table id="productdetails" >
         <tr id="heading">
             <th><span>
@@ -43,9 +43,54 @@
             <td>{{product.productbrand}} </td>
             <!-- <td> {{product.productstatus}}</td> -->
             <td>{{product.categoryname}} </td>
-            <td><a [routerLink]="['/updateproduct']"><button class = "updtbtn" [disabled]="product.productstatus!='accepted' " style="text-align:center;background-color:green;color:white;margin-top:10px">Update Product</button></a></td>
+            <td><button class = "updtbtn" [disabled]="product.productstatus!='accepted' " style="text-align:center;background-color:green;color:white;margin-top:10px" (click)=" findproducts(product.productid)">Update Product</button></td>
             <td><button class = "updtbtn" [disabled]="product.productstatus!='accepted' " style="text-align:center;background-color:red;color:white;margin-top:10px" (click)="Removeproduct(product.productid)">Remove Product</button></td>
         </tr>
         
     </table>
+
 </div>
+
+<div *ngIf="show">
+    <h4 style="text-align:center;font-family:helvetica;margin-top:35px;color:#404040;font-size:20px">Update Product</h4>
+    
+    <form [formGroup]="updateproductForm" (ngSubmit)="Updateproduct(this.product.productid)">
+    
+    
+    <label >Product Price</label><br>
+    
+    <input type="text" name="price" id="pprice" placeholder="Enter Product Price" formControlName="pprice" [(ngModel)]="productupdate.productprice"><br>
+    <span ><div *ngIf="f.pprice.touched && f.pprice.errors">
+        <div *ngIf="f.pprice.errors.required">Product Price required</div>
+        <div *ngIf="f.pprice.errors.pattern">Invalid Product Price</div>
+    </div></span>
+    
+    <label >Product Quantity</label><br>
+    
+    <input type="number" name="pquantity" id="pquantity" placeholder="Enter Product Quantity" formControlName="pquantity" [(ngModel)]="productupdate.productquantity"><br>
+    <span ><div *ngIf="f.pquantity.touched && f.pquantity.errors">
+        <div *ngIf="f.pquantity.errors.required">Email required</div>
+        <div *ngIf="f.pquantity.errors.pattern">Invalid Email</div>
+    </div></span>
+
+    <label >Product Description</label><br>
+    
+    <input type="text" name="pdescription" id="pdescription" placeholder="Enter Product Description" formControlName="pdescription" [(ngModel)]="productupdate.productdescription"><br>
+    <span ><div *ngIf="f.pdescription.touched && f.pdescription.errors">
+        <div *ngIf="f.pdescription.errors.required">Product Description required</div>
+        <div *ngIf="f.pdescription.errors">Invalid Product Description</div>
+    </div></span>
+    
+      
+    
+
+    <input type="submit" name="updateproduct" id="updateproduct" value="Update Product" style="text-align:center;background-color:black;color:white;margin-top:10px" >
+    <!-- <button style="text-align:center;background-color:black;color:white;margin-top:10px">Close</button> -->
+</form>
+</div>
+
+
+
+
+
+
