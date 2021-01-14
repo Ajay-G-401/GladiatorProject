@@ -1,0 +1,77 @@
+
+
+  <div class="bcg">
+    <div class="main-w3layouts wrapper" class="bcg">
+      <h1>Register Retailer</h1>
+      <div class="main-agileinfo">
+        <div class="agileits-top">
+          <form action="#" method="post">
+            <form [formGroup]="registerForm" (ngSubmit)="register()">                   
+              <div class="col">
+                <div class="row-md">
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" formControlName="remail" class="form-control" [(ngModel)]="RetailerRegister.retaileremail" [ngClass]="{ 'is-invalid': submitted && f.remail.errors }" autofocus />
+                    <div *ngIf="submitted && f.remail.errors" class="invalid-feedback">
+                      <div *ngIf="f.remail.errors">Please enter the email</div>
+                    </div>
+                  </div>
+                </div> 
+                <br>       
+                <div class="row-md">
+                  <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" formControlName="rpassword" class="form-control" [(ngModel)]="RetailerRegister.retailerpassword"  [ngClass]="{ 'is-invalid':submitted &&  f.rpassword.errors }"/>
+                    <div *ngIf="submitted && f.rpassword.errors" class="invalid-feedback">
+                      <div *ngIf="f.rpassword.errors">Password should be atleast 8 char contain one [A-Z],one [a-z] and one [0-9]</div>
+                    </div>
+                  </div>
+                </div> 
+                <br>
+                <div class="row-md">
+                  <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" formControlName="checkpassword" class="form-control"   />
+                    <div *ngIf="submitted &&  f.checkpassword.errors" class="invalid-feedback">
+                      <div *ngIf="f.checkpassword.errors">Password do not match</div>
+                    </div>
+                  </div>
+                </div> 
+                <br>
+                <div class="row-md">
+                  <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" formControlName="rname" class="form-control" [(ngModel)]="RetailerRegister.retailername"  [ngClass]="{ 'is-invalid': submitted && f.rname.errors }"/>
+                    <div *ngIf=" submitted && f.rname.errors" class="invalid-feedback">
+                      <div *ngIf="f.rname.errors.required">Please enter the name</div>
+                    </div>
+                  </div>
+                </div> 
+                <br>
+                
+                  <div class="wthree-text">
+                            <label class="anim">
+                                <input type="checkbox" formControlName="checkbox"  class="form-control" class="checkbox"  [ngClass]="{ 'is-invalid': submitted && f.checkbox.errors }" required="">
+                                <span>I Agree To The Terms & Conditions</span>
+                                <br>
+                                <div *ngIf="submitted &&  f.checkbox.errors" class="invalid-feedback">
+                                  <div *ngIf="f.checkbox.errors.required">Agree to Terms & conditions to Register</div>
+                                </div>
+                            </label>
+                            <div class="clear"> </div>
+                  </div>          
+              </div>
+              <br>
+              <input type="submit" value="Register">
+            </form>
+          </form>
+          <p>Do you  have an Account? </p> <a class ="userlogin" routerLink="/loginRetailer"> Login Now!</a>
+         
+        </div>
+      </div>
+      <!-- copyright -->
+      
+    </div>
+  
+  </div>
+  

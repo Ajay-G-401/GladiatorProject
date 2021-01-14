@@ -1,0 +1,51 @@
+<div class="bcg">
+    <br><br>
+    <h3>Please refer this table for Category ID</h3>
+    <br>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <th>Category ID</th>
+            <th>Category Name</th>
+            <th>Category Description</th>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let category of categories">
+                <td>{{category.categoryid}}</td>
+                <td>{{category.categoryname}}</td>
+                <td>{{category.categorydescription}}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <br><br>
+    
+            <div>
+                <form #imageForm=ngForm (ngSubmit)="OnSubmit(Productname,Productquantity,Productprice,Productdescription,Productbrand,Categoryid,Image)">
+                  <!-- <input type="text" #Retaileremail ngModel name="Retaileremail" id="Retaileremail" value="{{retaileremail}}" disabled> -->
+                      <input type="text" #Productname ngModel name="Productname" id="Productname" placeholder="Product Name" required>
+                  
+                      <input type="number" #Productquantity ngModel name="Productquantity" id="Productquantity" placeholder="Product Quantity">
+                  
+                      <input type="number" #Productprice ngModel name="Productprice" id="Productprice" placeholder="Product Price">
+     
+                      <input type="text" #Productdescription ngModel name="Productdescription" id="Productdescription" placeholder="Product Description">
+                     
+                      <input type="text" #Productbrand ngModel name="Productbrand" id="Productbrand" placeholder="Product Brand">
+                      <input type="text" #Categoryid ngModel name="Categoryid" id="Categoryid" placeholder="Category Id">
+                     
+                   
+                  <br>
+                  <img [src]="imageUrl"  style="width:250px;height:200px;">
+                  <input type="file" #Image accept="image/*" (change)="handleFileInput($event)">
+                  <br><br>
+                  <button class= "btn btn-success" type="submit" [disabled]="Image.value=='' || !imageForm.valid">Submit</button>
+                  
+                </form>
+              </div>
+         
+          
+          
+</div>
+
+
+

@@ -1,0 +1,29 @@
+.bcg
+{
+    background-color:darkgrey;
+    height:auto;
+    width:100%;
+}
+
+
+.card{
+    width: 1000px;
+    margin-left: 13%;
+}
+.containernew{
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
+    height:300px;
+    width:300px;
+}
+.image{
+    height: fit-content;
+    width: fit-content;
+}
+h2{
+    color: red;
+}
+p{
+    font-size: medium;
+}

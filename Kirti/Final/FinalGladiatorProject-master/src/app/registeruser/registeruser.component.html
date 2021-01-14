@@ -1,0 +1,143 @@
+<div class="bcg">
+  <div class="main-w3layouts wrapper" class="bcg">
+    <h1>Register User</h1>
+    <div class="main-agileinfo">
+      <div class="agileits-top">
+        <form action="#" method="post">
+          <form [formGroup]="registerForm" (ngSubmit)="register()">                   
+            <div class="col">
+              <div class="row-md">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="text" formControlName="useremail" class="form-control" [(ngModel)]="user.useremail" [ngClass]="{ 'is-invalid': submitted && f.useremail.errors }" autofocus/>
+                  <div *ngIf="submitted && f.useremail.errors" class="invalid-feedback">
+                    <div *ngIf="f.useremail.errors">Please enter the email</div>
+                  </div>
+                </div>
+              </div> 
+              <br>       
+              <div class="row-md">
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" formControlName="userpassword" class="form-control" [(ngModel)]="user.userpassword"  [ngClass]="{ 'is-invalid': submitted && f.userpassword.errors }"/>
+                  <div *ngIf="submitted && f.userpassword.errors" class="invalid-feedback">
+                    <div *ngIf="f.userpassword.errors">Password should be atleast 8 char contain one [A-Z],one [a-z] and one [0-9]</div>
+                  </div>
+                </div>
+              </div> 
+              <br>
+              <div class="row-md">
+                <div class="form-group">
+                  <label>Confirm Password</label>
+                  <input type="password" formControlName="checkpassword" class="form-control" [(ngModel)]="checkpassword"  [ngClass]="{ 'is-invalid': submitted && f.checkpassword.errors }"/>
+                  <div *ngIf="submitted &&  f.checkpassword.errors" class="invalid-feedback">
+                    <div *ngIf="f.checkpassword.errors">Password do not match</div>
+                  </div>
+                </div>
+              </div> 
+              <br>
+              <div class="row-md">
+                <div class="form-group">
+                  <label>Name</label>
+                  <input type="text" formControlName="username" class="form-control" [(ngModel)]="user.username"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
+                  <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Please enter the name</div>
+                  </div>
+                </div>
+              </div> 
+              <br>
+              <div class="row-md">
+                <div class="form-group">
+                  <label>Phone</label>
+                  <input type="text" formControlName="userphone" class="form-control" [(ngModel)]="user.userphone" [ngClass]="{ 'is-invalid': submitted && f.userphone.errors }" />
+                  <div *ngIf="submitted && f.userphone.errors" class="invalid-feedback">
+                    <div *ngIf="f.userphone.errors">Mobile must be Valid and at least 10 digits</div>                                    
+                  </div>
+                </div>
+              </div>   
+             <br>
+             <div class="row-md">
+              <div class="form-group">
+                <label>Apartment</label>
+                <input type="text" formControlName="userapartment" class="form-control" [(ngModel)]="user.userapartment"  [ngClass]="{ 'is-invalid': submitted && f.userapartment.errors }"/>
+                <div *ngIf="submitted && f.userapartment.errors" class="invalid-feedback">
+                  <div *ngIf="f.userapartment.errors.required">Please enter the Apartment</div>
+                </div>
+              </div>
+            </div> 
+            <br>
+            <div class="row-md">
+              <div class="form-group">
+                <label>Street</label>
+                <input type="text" formControlName="userstreet" class="form-control" [(ngModel)]="user.userstreet"  [ngClass]="{ 'is-invalid': submitted && f.userstreet.errors }"/>
+                <div *ngIf="submitted && f.userstreet.errors" class="invalid-feedback">
+                  <div *ngIf="f.userstreet.errors.required">Please enter the Street</div>
+                </div>
+              </div>
+            </div> 
+            <br>
+            <div class="row-md">
+              <div class="form-group">
+                <label>Town</label>
+                <input type="text" formControlName="usertown" class="form-control" [(ngModel)]="user.usertown"  [ngClass]="{ 'is-invalid': submitted && f.usertown.errors }"/>
+                <div *ngIf="submitted && f.usertown.errors" class="invalid-feedback">
+                  <div *ngIf="f.usertown.errors.required">Please enter the Town</div>
+                </div>
+              </div>
+            </div> 
+            <br>
+            <div class="row-md">
+              <div class="form-group">
+                <label>State</label>
+                <input type="text" formControlName="userstate" class="form-control" [(ngModel)]="user.userstate"  [ngClass]="{ 'is-invalid': submitted && f.userstate.errors }"/>
+                <div *ngIf="submitted && f.userstate.errors" class="invalid-feedback">
+                  <div *ngIf="f.userstate.errors.required">Please enter the State</div>
+                </div>
+              </div>
+            </div> 
+            <br>  
+            <div class="row-md">
+              <div class="form-group">
+                <label>PinCode</label>
+                <input type="text" formControlName="userpincode" class="form-control" [(ngModel)]="user.userpincode"  [ngClass]="{ 'is-invalid': submitted && f.userpincode.errors }"/>
+                <div *ngIf="submitted && f.userpincode.errors" class="invalid-feedback">
+                  <div *ngIf="f.userpincode.errors.required">Please enter the Pincode</div>
+                </div>
+              </div>
+            </div> 
+            <br> 
+            <div class="row-md">
+              <div class="form-group">
+                <label>Country</label>
+                <input type="text" formControlName="usercountry" class="form-control" [(ngModel)]="user.usercountry"  [ngClass]="{ 'is-invalid': submitted && f.usercountry.errors }"/>
+                <div *ngIf="submitted && f.usercountry.errors" class="invalid-feedback">
+                  <div *ngIf="f.usercountry.errors.required">Please enter the country</div>
+                </div>
+              </div>
+            </div> 
+            <br>   
+                <div class="wthree-text">
+                          <label class="anim">
+                              <input type="checkbox" formControlName="checkbox"  class="form-control" class="checkbox"  [ngClass]="{ 'is-invalid': submitted && f.usercountry.errors }" required="">
+                              <span>I Agree To The Terms & Conditions</span>
+                              <br>
+                              <div *ngIf="submitted && f.checkbox.errors" class="invalid-feedback">
+                                <div *ngIf="f.checkbox.errors.required">Agree to Terms & conditions to Register</div>
+                              </div>
+                          </label>
+                          <div class="clear"> </div>
+                </div>          
+            </div>
+            <br>
+            <input type="submit" value="Register">
+          </form>
+        </form>
+        <p>Do you  have an Account? </p> <a class ="userlogin" routerLink="/loginUser"> Login Now!</a>
+       
+      </div>
+    </div>
+    <!-- copyright -->
+    
+  </div>
+
+</div>

@@ -1,0 +1,72 @@
+<div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-light">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
+        <a  class="navbar-brand">
+            <img src="assets/HomePage/logofinal.jpg" height="75"  width ="100" alt="shopping gladiator">
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;
+                <div *ngIf="userlogged==false || user">
+                    <a href="#" class="nav-item active">Home</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;
+    
+                   
+                      <!-- <div class="dropdown"> -->
+                        <a routerLink='/filter'>Filter</a>
+                      <!-- </div> -->
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+                      <a routerLink="/searchProduct" class="nav-item "><i class="fa fa-search"></i>  Search</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;
+                      <a routerLink = '/wishlist' *ngIf = "userlogged" class="nav-item "> Wishlist</a>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;
+                      <a routerLink = '/compare' *ngIf = "userlogged" class="nav-item "> Compare</a>
+                      &nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;
+                    <a routerLink = '/cartUser' *ngIf = "userlogged" class="nav-item "><i class="fa fa-shopping-cart"></i>  Cart</a>
+                </div>
+                <div *ngIf="adminlogged==true">
+                    <a routerLink='/categories'>Categories</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a routerLink='/allProducts'>Products</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a routerLink='/productsForAdminApproval' >Pending Products</a>
+                </div>
+
+                <div class="dropdown" *ngIf = "userlogged==false">
+                    <a>Login</a>
+                    <div class="dropdown-content">
+                      <a routerLink="/loginUser">User</a>
+                      <a routerLink="/loginRetailer">Retailer</a>
+                      <a routerLink="/loginAdmin">Admin</a>
+                    </div>
+                  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
+            </div>
+            <div class="navbar-nav ">
+                <li *ngIf = "userlogged==true" class="nav-item">
+                    <h6  style="color:white">Hello , {{name}}</h6>
+                </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!--<a href="#" class="nav-item nav-link">Logout</a>-->
+                <li *ngIf = "buttonProfile==true" class="nav-item">
+                    <button class = "btn btn-warning" (click)="userprofilebut()">Profile</button>
+                </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!--<a href="#" class="nav-item nav-link">Logout</a>-->
+                <li *ngIf = "userlogged==true" class="nav-item">
+                    <button class = "btn btn-danger" (click)="logoff()">Logout</button>
+                </li>
+            </div>
+        </div>
+    </nav>

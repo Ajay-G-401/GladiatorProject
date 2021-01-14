@@ -1,0 +1,41 @@
+
+<article>
+    <h4 style="text-align:center;font-family:helvetica;margin-top:35px;color:#404040;font-size:20px">Update Product</h4>
+    
+    <form [formGroup]="updateproductForm" >
+    
+    
+    <label >Product Price</label><br>
+    
+    <input type="text" name="price" id="pprice" placeholder="Enter Product Price" formControlName="pprice" [(ngModel)]="productupdate.productprice"><br>
+    <span ><div *ngIf="submitted && f.pprice.errors">
+        <div *ngIf="f.pprice.errors.required">Product Price required</div>
+        <div *ngIf="f.pprice.errors.pattern">Invalid Product Price</div>
+    </div></span>
+    
+    <label >Product Quantity</label><br>
+    
+    <input type="number" name="pquantity" id="pquantity" placeholder="Enter Product Quantity" formControlName="pquantity" [(ngModel)]="productupdate.productquantity"><br>
+    <span ><div *ngIf="submitted && f.pquantity.errors">
+        <div *ngIf="f.pquantity.errors.required">Email required</div>
+        <div *ngIf="f.pquantity.errors.pattern">Invalid Email</div>
+    </div></span>
+
+    <label >Product Description</label><br>
+    
+    <input type="text" name="pdescription" id="pdescription" placeholder="Enter Product Description" formControlName="pdescription" [(ngModel)]="productupdate.productdescription"><br>
+    <span ><div *ngIf="submitted && f.pdescription.errors">
+        <div *ngIf="f.pdescription.errors.required">Product Description required</div>
+        <div *ngIf="f.pdescription.errors">Invalid Product Description</div>
+    </div></span>
+    
+      
+    
+
+    <input type="submit" name="updateproduct" id="updateproduct" value="Update Product" style="text-align:center;background-color:black;color:white;margin-top:10px" (click)="Updateproduct()">
+    <a [routerLink]="['/profileRetailer']"><input type="button" name="updateproduct" id="updateproduct" value="Back" style="text-align:center;background-color:black;color:white;margin-top:10px" ></a>
+    
+    </form>
+    </article>
+
+

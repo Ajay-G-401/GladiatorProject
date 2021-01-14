@@ -1,0 +1,52 @@
+
+
+<div class="bcg">
+    <section class="Form my-4 mx-5">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-5">
+                    <img src="./assets/images/login.jpg" class="img-fluid">
+                </div>
+                <div class="col-lg-7 px-5 pt-5">
+                    <h1>Online Shopping App</h1>
+                    <h4>Retailer Login </h4>
+                    <br><br>
+                    <form [formGroup] = "loginForm" (ngSubmit) = "Login()">
+                        <div class="form-row">
+                            <div class="form-group col-lg-7">
+                                <label> Email : </label>
+                                <input type = "text" class="form-control" formControlName = "retaileremail" [(ngModel)]="RetailerLogin.retaileremail" autofocus>
+                                <div *ngIf = "h.retaileremail.errors && h.retaileremail.touched" class="text-danger">
+                                    <div *ngIf = "h.retaileremail.errors.required">Email is required</div>
+                                    <div *ngIf = "h.retaileremail.errors.email">Email must be a valid email address</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="from-group col-lg-7">
+                                <label> Password : </label>
+                                <input type = "password" class="form-control" formControlName = "retailerpassword" [(ngModel)]="RetailerLogin.retailerpassword">
+                                <div *ngIf="h.retailerpassword.errors &&h.retailerpassword.touched" class="text-danger">
+                                    <div *ngIf = "h.retailerpassword.errors.required">Password is required</div>
+                                    <div *ngIf = "h.retailerpassword.errors.minlength">Password must be of minimum 6 characters</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <button class="btn1 mt-3 mb-5">Login</button>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                 <a routerLink ='/forgotpasswordRetailer'>Forgot Password</a>
+                                <p>Don't have an account ?</p>
+                                <a routerLink="/registerRetailer">Create Account</a>
+                            </div>
+                        </div>
+                    </form>                
+                </div>
+            </div>
+        </div>
+      </section>
+</div>

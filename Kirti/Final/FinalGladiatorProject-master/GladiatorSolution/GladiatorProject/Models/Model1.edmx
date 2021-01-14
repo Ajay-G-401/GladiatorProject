@@ -1,0 +1,1679 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbGladiatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblCart">
+          <Key>
+            <PropertyRef Name="cartid" />
+          </Key>
+          <Property Name="cartid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="useremail" Type="nvarchar" MaxLength="255" />
+          <Property Name="productid" Type="int" />
+          <Property Name="cartquantity" Type="int" />
+        </EntityType>
+        <EntityType Name="tblCategory">
+          <Key>
+            <PropertyRef Name="categoryid" />
+          </Key>
+          <Property Name="categoryid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="categorydescription" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblCompare">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_id" Type="int" />
+          <Property Name="useremail" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tblOrder">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderdate" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="useremail" Type="nvarchar" MaxLength="255" />
+          <Property Name="productid" Type="int" />
+          <Property Name="retailerid" Type="int" />
+          <Property Name="orderquantity" Type="int" />
+          <Property Name="orderprice" Type="float" />
+        </EntityType>
+        <EntityType Name="tblProduct">
+          <Key>
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="productid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productname" Type="nvarchar(max)" />
+          <Property Name="productprice" Type="float" />
+          <Property Name="productquantity" Type="int" />
+          <Property Name="productdescription" Type="nvarchar(max)" />
+          <Property Name="productbrand" Type="varchar" MaxLength="45" />
+          <Property Name="productimage1" Type="nvarchar(max)" />
+          <Property Name="productnotification" Type="varchar" MaxLength="45" />
+          <Property Name="productstatus" Type="varchar" MaxLength="20" />
+          <Property Name="retailerid" Type="int" />
+          <Property Name="categoryid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblRetailer">
+          <Key>
+            <PropertyRef Name="retailerid" />
+          </Key>
+          <Property Name="retailerid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="retailername" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="retaileremail" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="retailerpassword" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="approved" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="useremail" />
+          </Key>
+          <Property Name="useremail" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="userphone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="userpassword" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="userapartment" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="userstreet" Type="varchar" MaxLength="40" />
+          <Property Name="usertown" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="userstate" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="userpincode" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="usercountry" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblWishlist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_id" Type="int" />
+          <Property Name="useremail" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__tblCart__product__22AA2996">
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCart" Type="Self.tblCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProduct">
+              <PropertyRef Name="productid" />
+            </Principal>
+            <Dependent Role="tblCart">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCart__userema__21B6055D">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCart" Type="Self.tblCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="useremail" />
+            </Principal>
+            <Dependent Role="tblCart">
+              <PropertyRef Name="useremail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCompar__Produ__3C69FB99">
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCompare" Type="Self.tblCompare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProduct">
+              <PropertyRef Name="productid" />
+            </Principal>
+            <Dependent Role="tblCompare">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCompar__usere__3D5E1FD2">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCompare" Type="Self.tblCompare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="useremail" />
+            </Principal>
+            <Dependent Role="tblCompare">
+              <PropertyRef Name="useremail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblOrder__produc__45F365D3">
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProduct">
+              <PropertyRef Name="productid" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblOrder__retail__46E78A0C">
+          <End Role="tblRetailer" Type="Self.tblRetailer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRetailer">
+              <PropertyRef Name="retailerid" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="retailerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblOrder__userem__44FF419A">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="useremail" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="useremail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblProduc__categ__1ED998B2">
+          <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategory">
+              <PropertyRef Name="categoryid" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="categoryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblProduc__retai__1DE57479">
+          <End Role="tblRetailer" Type="Self.tblRetailer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRetailer">
+              <PropertyRef Name="retailerid" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="retailerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWishli__Produ__38996AB5">
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblWishlist" Type="Self.tblWishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProduct">
+              <PropertyRef Name="productid" />
+            </Principal>
+            <Dependent Role="tblWishlist">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWishli__usere__398D8EEE">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblWishlist" Type="Self.tblWishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="useremail" />
+            </Principal>
+            <Dependent Role="tblWishlist">
+              <PropertyRef Name="useremail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="proc_Add_To_Wishlist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productid" Type="int" Mode="In" />
+          <Parameter Name="useremail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Approve_Product" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_Approve_Retailer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="retailerid" Type="int" Mode="In" />
+          <Parameter Name="retaileremail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Changepass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="rpass" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="proc_DisplayProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rmail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_DisplayRetailerDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rmail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Get_All_Retailers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_Get_AllProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_Get_Cart_Total" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="useremail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Get_Categories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_Get_Category_Count" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productid" Type="int" Mode="In" />
+          <Parameter Name="useremail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Get_NotAvailableProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="useremail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Get_Pending_Retailers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_Get_Profile_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="useremail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Get_User_Orders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="useremail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Get_WishList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="useremail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_GetCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="useremail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_GetCompare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="useremail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Insert_Category" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="categoryname" Type="varchar" Mode="In" />
+          <Parameter Name="description" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="proc_Insert_Compare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productid" Type="int" Mode="In" />
+          <Parameter Name="useremail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Insert_Into_Cart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="useremail" Type="varchar" Mode="In" />
+          <Parameter Name="productid" Type="int" Mode="In" />
+          <Parameter Name="cartquantity" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_Insert_Order" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="orderdate" Type="varchar" Mode="In" />
+          <Parameter Name="useremail" Type="varchar" Mode="In" />
+          <Parameter Name="productid" Type="int" Mode="In" />
+          <Parameter Name="retailerid" Type="int" Mode="In" />
+          <Parameter Name="orderquantity" Type="int" Mode="In" />
+          <Parameter Name="orderprice" Type="float" Mode="In" />
+        </Function>
+        <Function Name="proc_Pending_Products" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_Reject_Product" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_Remove_Compare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="useremail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Remove_From_Cart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cartid" Type="int" Mode="In" />
+          <Parameter Name="productid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_Remove_From_Wishlist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="wishlistid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_Remove_Product" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_Remove_Product_Compare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="wishlistid" Type="int" Mode="In" />
+          <Parameter Name="useremail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_RetailLoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rmail" Type="varchar" Mode="In" />
+          <Parameter Name="pass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Search_Result" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="search" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Update_Cart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cartid" Type="int" Mode="In" />
+          <Parameter Name="productid" Type="int" Mode="In" />
+          <Parameter Name="quantity" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_UpdateProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productid" Type="int" Mode="In" />
+          <Parameter Name="rmail" Type="varchar" Mode="In" />
+          <Parameter Name="pprice" Type="float" Mode="In" />
+          <Parameter Name="pquantity" Type="int" Mode="In" />
+          <Parameter Name="pdescrip" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="proc_UpdateProduct1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productid" Type="int" Mode="In" />
+          <Parameter Name="rmail" Type="varchar" Mode="In" />
+          <Parameter Name="pprice" Type="float" Mode="In" />
+          <Parameter Name="pquantity" Type="int" Mode="In" />
+          <Parameter Name="pdescrip" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetAllProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_getCat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetPdtByCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cname" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_GetPdtByPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lower" Type="float" Mode="In" />
+          <Parameter Name="Upper" Type="float" Mode="In" />
+        </Function>
+        <Function Name="sp_GetPdtByPriceCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lower" Type="float" Mode="In" />
+          <Parameter Name="Upper" Type="float" Mode="In" />
+          <Parameter Name="Cname" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_SortByPriceAsc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_SortByPriceDesc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="dbGladiatorModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCart" EntityType="Self.tblCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCategory" EntityType="Self.tblCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCompare" EntityType="Self.tblCompare" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOrder" EntityType="Self.tblOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProduct" EntityType="Self.tblProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRetailer" EntityType="Self.tblRetailer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblWishlist" EntityType="Self.tblWishlist" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblCart__product__22AA2996" Association="Self.FK__tblCart__product__22AA2996">
+            <End Role="tblProduct" EntitySet="tblProduct" />
+            <End Role="tblCart" EntitySet="tblCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCart__userema__21B6055D" Association="Self.FK__tblCart__userema__21B6055D">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblCart" EntitySet="tblCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCompar__Produ__3C69FB99" Association="Self.FK__tblCompar__Produ__3C69FB99">
+            <End Role="tblProduct" EntitySet="tblProduct" />
+            <End Role="tblCompare" EntitySet="tblCompare" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCompar__usere__3D5E1FD2" Association="Self.FK__tblCompar__usere__3D5E1FD2">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblCompare" EntitySet="tblCompare" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblOrder__produc__45F365D3" Association="Self.FK__tblOrder__produc__45F365D3">
+            <End Role="tblProduct" EntitySet="tblProduct" />
+            <End Role="tblOrder" EntitySet="tblOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblOrder__retail__46E78A0C" Association="Self.FK__tblOrder__retail__46E78A0C">
+            <End Role="tblRetailer" EntitySet="tblRetailer" />
+            <End Role="tblOrder" EntitySet="tblOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblOrder__userem__44FF419A" Association="Self.FK__tblOrder__userem__44FF419A">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblOrder" EntitySet="tblOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblProduc__categ__1ED998B2" Association="Self.FK__tblProduc__categ__1ED998B2">
+            <End Role="tblCategory" EntitySet="tblCategory" />
+            <End Role="tblProduct" EntitySet="tblProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblProduc__retai__1DE57479" Association="Self.FK__tblProduc__retai__1DE57479">
+            <End Role="tblRetailer" EntitySet="tblRetailer" />
+            <End Role="tblProduct" EntitySet="tblProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWishli__Produ__38996AB5" Association="Self.FK__tblWishli__Produ__38996AB5">
+            <End Role="tblProduct" EntitySet="tblProduct" />
+            <End Role="tblWishlist" EntitySet="tblWishlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWishli__usere__398D8EEE" Association="Self.FK__tblWishli__usere__398D8EEE">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblWishlist" EntitySet="tblWishlist" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbGladiatorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblCart">
+          <Key>
+            <PropertyRef Name="cartid" />
+          </Key>
+          <Property Name="cartid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="useremail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="productid" Type="Int32" />
+          <Property Name="cartquantity" Type="Int32" />
+          <NavigationProperty Name="tblProduct" Relationship="Self.FK__tblCart__product__22AA2996" FromRole="tblCart" ToRole="tblProduct" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblCart__userema__21B6055D" FromRole="tblCart" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblCategory">
+          <Key>
+            <PropertyRef Name="categoryid" />
+          </Key>
+          <Property Name="categoryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="categorydescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.FK__tblProduc__categ__1ED998B2" FromRole="tblCategory" ToRole="tblProduct" />
+        </EntityType>
+        <EntityType Name="tblCompare">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_id" Type="Int32" />
+          <Property Name="useremail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblProduct" Relationship="Self.FK__tblCompar__Produ__3C69FB99" FromRole="tblCompare" ToRole="tblProduct" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblCompar__usere__3D5E1FD2" FromRole="tblCompare" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblOrder">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderdate" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="useremail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="productid" Type="Int32" />
+          <Property Name="retailerid" Type="Int32" />
+          <Property Name="orderquantity" Type="Int32" />
+          <Property Name="orderprice" Type="Double" />
+          <NavigationProperty Name="tblProduct" Relationship="Self.FK__tblOrder__produc__45F365D3" FromRole="tblOrder" ToRole="tblProduct" />
+          <NavigationProperty Name="tblRetailer" Relationship="Self.FK__tblOrder__retail__46E78A0C" FromRole="tblOrder" ToRole="tblRetailer" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblOrder__userem__44FF419A" FromRole="tblOrder" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblProduct">
+          <Key>
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="productid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="productprice" Type="Double" />
+          <Property Name="productquantity" Type="Int32" />
+          <Property Name="productdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="productbrand" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="productimage1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="productnotification" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="productstatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="retailerid" Type="Int32" />
+          <Property Name="categoryid" Type="Int32" />
+          <NavigationProperty Name="tblCarts" Relationship="Self.FK__tblCart__product__22AA2996" FromRole="tblProduct" ToRole="tblCart" />
+          <NavigationProperty Name="tblCategory" Relationship="Self.FK__tblProduc__categ__1ED998B2" FromRole="tblProduct" ToRole="tblCategory" />
+          <NavigationProperty Name="tblCompares" Relationship="Self.FK__tblCompar__Produ__3C69FB99" FromRole="tblProduct" ToRole="tblCompare" />
+          <NavigationProperty Name="tblOrders" Relationship="Self.FK__tblOrder__produc__45F365D3" FromRole="tblProduct" ToRole="tblOrder" />
+          <NavigationProperty Name="tblRetailer" Relationship="Self.FK__tblProduc__retai__1DE57479" FromRole="tblProduct" ToRole="tblRetailer" />
+          <NavigationProperty Name="tblWishlists" Relationship="Self.FK__tblWishli__Produ__38996AB5" FromRole="tblProduct" ToRole="tblWishlist" />
+        </EntityType>
+        <EntityType Name="tblRetailer">
+          <Key>
+            <PropertyRef Name="retailerid" />
+          </Key>
+          <Property Name="retailerid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="retailername" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="retaileremail" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="retailerpassword" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="approved" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblOrders" Relationship="Self.FK__tblOrder__retail__46E78A0C" FromRole="tblRetailer" ToRole="tblOrder" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.FK__tblProduc__retai__1DE57479" FromRole="tblRetailer" ToRole="tblProduct" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="useremail" />
+          </Key>
+          <Property Name="useremail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userphone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userpassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="userapartment" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userstreet" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="usertown" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userstate" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userpincode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usercountry" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblCarts" Relationship="Self.FK__tblCart__userema__21B6055D" FromRole="tblUser" ToRole="tblCart" />
+          <NavigationProperty Name="tblCompares" Relationship="Self.FK__tblCompar__usere__3D5E1FD2" FromRole="tblUser" ToRole="tblCompare" />
+          <NavigationProperty Name="tblOrders" Relationship="Self.FK__tblOrder__userem__44FF419A" FromRole="tblUser" ToRole="tblOrder" />
+          <NavigationProperty Name="tblWishlists" Relationship="Self.FK__tblWishli__usere__398D8EEE" FromRole="tblUser" ToRole="tblWishlist" />
+        </EntityType>
+        <EntityType Name="tblWishlist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_id" Type="Int32" />
+          <Property Name="useremail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblProduct" Relationship="Self.FK__tblWishli__Produ__38996AB5" FromRole="tblWishlist" ToRole="tblProduct" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblWishli__usere__398D8EEE" FromRole="tblWishlist" ToRole="tblUser" />
+        </EntityType>
+        <Association Name="FK__tblCart__product__22AA2996">
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCart" Type="Self.tblCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProduct">
+              <PropertyRef Name="productid" />
+            </Principal>
+            <Dependent Role="tblCart">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCart__userema__21B6055D">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCart" Type="Self.tblCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="useremail" />
+            </Principal>
+            <Dependent Role="tblCart">
+              <PropertyRef Name="useremail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblProduc__categ__1ED998B2">
+          <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategory">
+              <PropertyRef Name="categoryid" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="categoryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCompar__Produ__3C69FB99">
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCompare" Type="Self.tblCompare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProduct">
+              <PropertyRef Name="productid" />
+            </Principal>
+            <Dependent Role="tblCompare">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCompar__usere__3D5E1FD2">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCompare" Type="Self.tblCompare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="useremail" />
+            </Principal>
+            <Dependent Role="tblCompare">
+              <PropertyRef Name="useremail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblOrder__produc__45F365D3">
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProduct">
+              <PropertyRef Name="productid" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblOrder__retail__46E78A0C">
+          <End Role="tblRetailer" Type="Self.tblRetailer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRetailer">
+              <PropertyRef Name="retailerid" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="retailerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblOrder__userem__44FF419A">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="useremail" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="useremail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblProduc__retai__1DE57479">
+          <End Role="tblRetailer" Type="Self.tblRetailer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRetailer">
+              <PropertyRef Name="retailerid" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="retailerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWishli__Produ__38996AB5">
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblWishlist" Type="Self.tblWishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProduct">
+              <PropertyRef Name="productid" />
+            </Principal>
+            <Dependent Role="tblWishlist">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWishli__usere__398D8EEE">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblWishlist" Type="Self.tblWishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="useremail" />
+            </Principal>
+            <Dependent Role="tblWishlist">
+              <PropertyRef Name="useremail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbGladiatorEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tblCarts" EntityType="Self.tblCart" />
+          <EntitySet Name="tblCategories" EntityType="Self.tblCategory" />
+          <EntitySet Name="tblCompares" EntityType="Self.tblCompare" />
+          <EntitySet Name="tblOrders" EntityType="Self.tblOrder" />
+          <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
+          <EntitySet Name="tblRetailers" EntityType="Self.tblRetailer" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="tblWishlists" EntityType="Self.tblWishlist" />
+          <AssociationSet Name="FK__tblCart__product__22AA2996" Association="Self.FK__tblCart__product__22AA2996">
+            <End Role="tblProduct" EntitySet="tblProducts" />
+            <End Role="tblCart" EntitySet="tblCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCart__userema__21B6055D" Association="Self.FK__tblCart__userema__21B6055D">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblCart" EntitySet="tblCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblProduc__categ__1ED998B2" Association="Self.FK__tblProduc__categ__1ED998B2">
+            <End Role="tblCategory" EntitySet="tblCategories" />
+            <End Role="tblProduct" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCompar__Produ__3C69FB99" Association="Self.FK__tblCompar__Produ__3C69FB99">
+            <End Role="tblProduct" EntitySet="tblProducts" />
+            <End Role="tblCompare" EntitySet="tblCompares" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCompar__usere__3D5E1FD2" Association="Self.FK__tblCompar__usere__3D5E1FD2">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblCompare" EntitySet="tblCompares" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblOrder__produc__45F365D3" Association="Self.FK__tblOrder__produc__45F365D3">
+            <End Role="tblProduct" EntitySet="tblProducts" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblOrder__retail__46E78A0C" Association="Self.FK__tblOrder__retail__46E78A0C">
+            <End Role="tblRetailer" EntitySet="tblRetailers" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblOrder__userem__44FF419A" Association="Self.FK__tblOrder__userem__44FF419A">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblProduc__retai__1DE57479" Association="Self.FK__tblProduc__retai__1DE57479">
+            <End Role="tblRetailer" EntitySet="tblRetailers" />
+            <End Role="tblProduct" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWishli__Produ__38996AB5" Association="Self.FK__tblWishli__Produ__38996AB5">
+            <End Role="tblProduct" EntitySet="tblProducts" />
+            <End Role="tblWishlist" EntitySet="tblWishlists" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWishli__usere__398D8EEE" Association="Self.FK__tblWishli__usere__398D8EEE">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblWishlist" EntitySet="tblWishlists" />
+          </AssociationSet>
+          <FunctionImport Name="proc_Add_To_Wishlist">
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+            <Parameter Name="useremail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Approve_Product">
+          <Parameter Name="productid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Approve_Retailer">
+            <Parameter Name="retailerid" Mode="In" Type="Int32" />
+            <Parameter Name="retaileremail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Changepass">
+            <Parameter Name="rmail" Mode="In" Type="String" />
+            <Parameter Name="rpass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_DisplayProducts" ReturnType="Collection(dbGladiatorModel.proc_DisplayProducts_Result)">
+          <Parameter Name="rmail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_DisplayRetailerDetails" ReturnType="Collection(dbGladiatorModel.proc_DisplayRetailerDetails_Result)">
+          <Parameter Name="rmail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Get_All_Retailers" ReturnType="Collection(dbGladiatorModel.proc_Get_All_Retailers_Result)" />
+          <FunctionImport Name="proc_Get_AllProducts" ReturnType="Collection(dbGladiatorModel.proc_Get_AllProducts_Result)" />
+          <FunctionImport Name="proc_Get_Cart_Total" ReturnType="Collection(dbGladiatorModel.proc_Get_Cart_Total_Result)">
+          <Parameter Name="useremail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Get_Categories" ReturnType="Collection(dbGladiatorModel.proc_Get_Categories_Result)" />
+          <FunctionImport Name="proc_Get_Category_Count" ReturnType="Collection(Int32)">
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+            <Parameter Name="useremail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Get_NotAvailableProducts" ReturnType="Collection(dbGladiatorModel.proc_Get_NotAvailableProducts_Result)">
+          <Parameter Name="useremail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Get_Pending_Retailers" ReturnType="Collection(dbGladiatorModel.proc_Get_Pending_Retailers_Result)" />
+          <FunctionImport Name="proc_Get_Profile_User" ReturnType="Collection(dbGladiatorModel.proc_Get_Profile_User_Result)">
+          <Parameter Name="useremail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Get_User_Orders" ReturnType="Collection(dbGladiatorModel.proc_Get_User_Orders_Result)">
+          <Parameter Name="useremail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Get_WishList" ReturnType="Collection(dbGladiatorModel.proc_Get_WishList_Result)">
+          <Parameter Name="useremail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetCart" ReturnType="Collection(dbGladiatorModel.proc_GetCart_Result)">
+          <Parameter Name="useremail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetCompare" ReturnType="Collection(dbGladiatorModel.proc_GetCompare_Result)">
+          <Parameter Name="useremail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Insert_Category">
+            <Parameter Name="categoryname" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Insert_Compare">
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+            <Parameter Name="useremail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Insert_Into_Cart">
+            <Parameter Name="useremail" Mode="In" Type="String" />
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+            <Parameter Name="cartquantity" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Insert_Order">
+            <Parameter Name="orderdate" Mode="In" Type="String" />
+            <Parameter Name="useremail" Mode="In" Type="String" />
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+            <Parameter Name="retailerid" Mode="In" Type="Int32" />
+            <Parameter Name="orderquantity" Mode="In" Type="Int32" />
+            <Parameter Name="orderprice" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Pending_Products" ReturnType="Collection(dbGladiatorModel.proc_Pending_Products_Result)" />
+          <FunctionImport Name="proc_Reject_Product">
+          <Parameter Name="productid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Remove_Compare">
+          <Parameter Name="useremail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Remove_From_Cart">
+            <Parameter Name="cartid" Mode="In" Type="Int32" />
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Remove_From_Wishlist">
+          <Parameter Name="wishlistid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Remove_Product">
+          <Parameter Name="productid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Remove_Product_Compare">
+            <Parameter Name="wishlistid" Mode="In" Type="Int32" />
+            <Parameter Name="useremail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_RetailLoginCheck" ReturnType="Collection(dbGladiatorModel.proc_RetailLoginCheck_Result)">
+            <Parameter Name="rmail" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Search_Result" ReturnType="Collection(dbGladiatorModel.proc_Search_Result_Result)">
+          <Parameter Name="search" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Update_Cart">
+            <Parameter Name="cartid" Mode="In" Type="Int32" />
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+            <Parameter Name="quantity" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_UpdateProduct">
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+            <Parameter Name="rmail" Mode="In" Type="String" />
+            <Parameter Name="pprice" Mode="In" Type="Double" />
+            <Parameter Name="pquantity" Mode="In" Type="Int32" />
+            <Parameter Name="pdescrip" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetAllProduct" ReturnType="Collection(dbGladiatorModel.sp_GetAllProduct_Result)" />
+          <FunctionImport Name="sp_getCat" ReturnType="Collection(String)" />
+          <FunctionImport Name="sp_GetPdtByCategory" ReturnType="Collection(dbGladiatorModel.sp_GetPdtByCategory_Result)">
+          <Parameter Name="cname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetPdtByPrice" ReturnType="Collection(dbGladiatorModel.sp_GetPdtByPrice_Result)">
+            <Parameter Name="Lower" Mode="In" Type="Double" />
+            <Parameter Name="Upper" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetPdtByPriceCategory" ReturnType="Collection(dbGladiatorModel.sp_GetPdtByPriceCategory_Result)">
+            <Parameter Name="Lower" Mode="In" Type="Double" />
+            <Parameter Name="Upper" Mode="In" Type="Double" />
+            <Parameter Name="Cname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(dbGladiatorModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(dbGladiatorModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_SortByPriceAsc" ReturnType="Collection(dbGladiatorModel.sp_SortByPriceAsc_Result)" />
+          <FunctionImport Name="sp_SortByPriceDesc" ReturnType="Collection(dbGladiatorModel.sp_SortByPriceDesc_Result)" />
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="proc_UpdateProduct1">
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+            <Parameter Name="rmail" Mode="In" Type="String" />
+            <Parameter Name="pprice" Mode="In" Type="Double" />
+            <Parameter Name="pquantity" Mode="In" Type="Int32" />
+            <Parameter Name="pdescrip" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="proc_DisplayProducts_Result">
+          <Property Type="Int32" Name="productid" Nullable="false" />
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="Int32" Name="productquantity" Nullable="true" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="String" Name="productbrand" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="productstatus" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="categoryname" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_DisplayRetailerDetails_Result">
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="String" Name="productbrand" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="useremail" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="Int32" Name="orderquantity" Nullable="true" />
+          <Property Type="String" Name="productstatus" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="proc_Get_All_Retailers_Result">
+          <Property Type="Int32" Name="retailerid" Nullable="false" />
+          <Property Type="String" Name="retailername" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="retaileremail" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="retailerpassword" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="approved" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="proc_Get_AllProducts_Result">
+          <Property Type="Int32" Name="productid" Nullable="false" />
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="String" Name="productimage1" Nullable="true" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="Int32" Name="productquantity" Nullable="true" />
+          <Property Type="String" Name="productnotification" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="productbrand" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="categoryname" Nullable="false" />
+          <Property Type="Int32" Name="retailerid" Nullable="false" />
+          <Property Type="String" Name="retailername" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="retaileremail" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="proc_Get_Cart_Total_Result">
+          <Property Type="Double" Name="Total" Nullable="true" />
+          <Property Type="Int32" Name="itemscount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_Get_Categories_Result">
+          <Property Type="Int32" Name="categoryid" Nullable="false" />
+          <Property Type="String" Name="categoryname" Nullable="false" />
+          <Property Type="String" Name="categorydescription" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_Get_NotAvailableProducts_Result">
+          <Property Type="Int32" Name="productid" Nullable="false" />
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="String" Name="productimage1" Nullable="true" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="String" Name="categoryname" Nullable="false" />
+          <Property Type="String" Name="useremail" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="cartquantity" Nullable="true" />
+          <Property Type="Int32" Name="retailerid" Nullable="false" />
+          <Property Type="String" Name="retailername" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="retaileremail" Nullable="false" MaxLength="40" />
+          <Property Type="Int32" Name="cartid" Nullable="false" />
+          <Property Type="Double" Name="total" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_Get_Pending_Retailers_Result">
+          <Property Type="Int32" Name="retailerid" Nullable="false" />
+          <Property Type="String" Name="retailername" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="retaileremail" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="proc_Get_Profile_User_Result">
+          <Property Type="String" Name="useremail" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="username" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="userphone" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="userpassword" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="userapartment" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="userstreet" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="usertown" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="userstate" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="userpincode" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="usercountry" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="proc_Get_User_Orders_Result">
+          <Property Type="String" Name="useremail" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="username" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="userphone" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="userapartment" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="userstreet" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="usertown" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="userstate" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="userpincode" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="usercountry" Nullable="false" MaxLength="40" />
+          <Property Type="Int32" Name="orderid" Nullable="false" />
+          <Property Type="String" Name="orderdate" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="String" Name="productbrand" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="Int32" Name="orderquantity" Nullable="true" />
+          <Property Type="Double" Name="orderprice" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_Get_WishList_Result">
+          <Property Type="Int32" Name="productid" Nullable="false" />
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="String" Name="productimage1" Nullable="true" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="Int32" Name="productquantity" Nullable="true" />
+          <Property Type="String" Name="productbrand" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="productnotification" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="categoryname" Nullable="false" />
+          <Property Type="Int32" Name="retailerid" Nullable="false" />
+          <Property Type="String" Name="retailername" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="retaileremail" Nullable="false" MaxLength="40" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_GetCart_Result">
+          <Property Type="Int32" Name="productid" Nullable="false" />
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="String" Name="productimage1" Nullable="true" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="String" Name="categoryname" Nullable="false" />
+          <Property Type="String" Name="useremail" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="cartquantity" Nullable="true" />
+          <Property Type="Int32" Name="retailerid" Nullable="false" />
+          <Property Type="String" Name="retailername" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="retaileremail" Nullable="false" MaxLength="40" />
+          <Property Type="Int32" Name="cartid" Nullable="false" />
+          <Property Type="Double" Name="total" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_GetCompare_Result">
+          <Property Type="Int32" Name="productid" Nullable="false" />
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="String" Name="productimage1" Nullable="true" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="Int32" Name="productquantity" Nullable="true" />
+          <Property Type="String" Name="productbrand" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="productnotification" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="categoryname" Nullable="false" />
+          <Property Type="Int32" Name="retailerid" Nullable="false" />
+          <Property Type="String" Name="retailername" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="retaileremail" Nullable="false" MaxLength="40" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_Pending_Products_Result">
+          <Property Type="Int32" Name="productid" Nullable="false" />
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="String" Name="productimage1" Nullable="true" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="Int32" Name="productquantity" Nullable="true" />
+          <Property Type="String" Name="productbrand" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="productnotification" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="categoryname" Nullable="false" />
+          <Property Type="Int32" Name="retailerid" Nullable="false" />
+          <Property Type="String" Name="retailername" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="retaileremail" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="proc_RetailLoginCheck_Result">
+          <Property Type="String" Name="retaileremail" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="retailerpassword" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="proc_Search_Result_Result">
+          <Property Type="Int32" Name="productid" Nullable="false" />
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="String" Name="productimage1" Nullable="true" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="Int32" Name="productquantity" Nullable="true" />
+          <Property Type="String" Name="productbrand" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="categoryname" Nullable="false" />
+          <Property Type="Int32" Name="retailerid" Nullable="false" />
+          <Property Type="String" Name="retailername" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="retaileremail" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAllProduct_Result">
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="Int32" Name="productquantity" Nullable="true" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="String" Name="productimage1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetPdtByCategory_Result">
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="Int32" Name="productquantity" Nullable="true" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="String" Name="productimage1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetPdtByPrice_Result">
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="Int32" Name="productquantity" Nullable="true" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="String" Name="productimage1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetPdtByPriceCategory_Result">
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="Int32" Name="productquantity" Nullable="true" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="String" Name="productimage1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_SortByPriceAsc_Result">
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="Int32" Name="productquantity" Nullable="true" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="String" Name="productimage1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_SortByPriceDesc_Result">
+          <Property Type="String" Name="productname" Nullable="true" />
+          <Property Type="Double" Name="productprice" Nullable="true" />
+          <Property Type="Int32" Name="productquantity" Nullable="true" />
+          <Property Type="String" Name="productdescription" Nullable="true" />
+          <Property Type="String" Name="productimage1" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbGladiatorModelStoreContainer" CdmEntityContainer="dbGladiatorEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="dbGladiatorModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCarts">
+            <EntityTypeMapping TypeName="dbGladiatorModel.tblCart">
+              <MappingFragment StoreEntitySet="tblCart">
+                <ScalarProperty Name="cartid" ColumnName="cartid" />
+                <ScalarProperty Name="useremail" ColumnName="useremail" />
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="cartquantity" ColumnName="cartquantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCategories">
+            <EntityTypeMapping TypeName="dbGladiatorModel.tblCategory">
+              <MappingFragment StoreEntitySet="tblCategory">
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+                <ScalarProperty Name="categorydescription" ColumnName="categorydescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCompares">
+            <EntityTypeMapping TypeName="dbGladiatorModel.tblCompare">
+              <MappingFragment StoreEntitySet="tblCompare">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+                <ScalarProperty Name="useremail" ColumnName="useremail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrders">
+            <EntityTypeMapping TypeName="dbGladiatorModel.tblOrder">
+              <MappingFragment StoreEntitySet="tblOrder">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="useremail" ColumnName="useremail" />
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+                <ScalarProperty Name="orderquantity" ColumnName="orderquantity" />
+                <ScalarProperty Name="orderprice" ColumnName="orderprice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProducts">
+            <EntityTypeMapping TypeName="dbGladiatorModel.tblProduct">
+              <MappingFragment StoreEntitySet="tblProduct">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productbrand" ColumnName="productbrand" />
+                <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+                <ScalarProperty Name="productnotification" ColumnName="productnotification" />
+                <ScalarProperty Name="productstatus" ColumnName="productstatus" />
+                <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRetailers">
+            <EntityTypeMapping TypeName="dbGladiatorModel.tblRetailer">
+              <MappingFragment StoreEntitySet="tblRetailer">
+                <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+                <ScalarProperty Name="retailername" ColumnName="retailername" />
+                <ScalarProperty Name="retaileremail" ColumnName="retaileremail" />
+                <ScalarProperty Name="retailerpassword" ColumnName="retailerpassword" />
+                <ScalarProperty Name="approved" ColumnName="approved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="dbGladiatorModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="useremail" ColumnName="useremail" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="userphone" ColumnName="userphone" />
+                <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+                <ScalarProperty Name="userapartment" ColumnName="userapartment" />
+                <ScalarProperty Name="userstreet" ColumnName="userstreet" />
+                <ScalarProperty Name="usertown" ColumnName="usertown" />
+                <ScalarProperty Name="userstate" ColumnName="userstate" />
+                <ScalarProperty Name="userpincode" ColumnName="userpincode" />
+                <ScalarProperty Name="usercountry" ColumnName="usercountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblWishlists">
+            <EntityTypeMapping TypeName="dbGladiatorModel.tblWishlist">
+              <MappingFragment StoreEntitySet="tblWishlist">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+                <ScalarProperty Name="useremail" ColumnName="useremail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="proc_Add_To_Wishlist" FunctionName="dbGladiatorModel.Store.proc_Add_To_Wishlist" />
+          <FunctionImportMapping FunctionImportName="proc_Approve_Product" FunctionName="dbGladiatorModel.Store.proc_Approve_Product" />
+          <FunctionImportMapping FunctionImportName="proc_Approve_Retailer" FunctionName="dbGladiatorModel.Store.proc_Approve_Retailer" />
+          <FunctionImportMapping FunctionImportName="proc_Changepass" FunctionName="dbGladiatorModel.Store.proc_Changepass" />
+          <FunctionImportMapping FunctionImportName="proc_DisplayProducts" FunctionName="dbGladiatorModel.Store.proc_DisplayProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_DisplayProducts_Result">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productbrand" ColumnName="productbrand" />
+                <ScalarProperty Name="productstatus" ColumnName="productstatus" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_DisplayRetailerDetails" FunctionName="dbGladiatorModel.Store.proc_DisplayRetailerDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_DisplayRetailerDetails_Result">
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productbrand" ColumnName="productbrand" />
+                <ScalarProperty Name="useremail" ColumnName="useremail" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="orderquantity" ColumnName="orderquantity" />
+                <ScalarProperty Name="productstatus" ColumnName="productstatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Get_All_Retailers" FunctionName="dbGladiatorModel.Store.proc_Get_All_Retailers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_Get_All_Retailers_Result">
+                <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+                <ScalarProperty Name="retailername" ColumnName="retailername" />
+                <ScalarProperty Name="retaileremail" ColumnName="retaileremail" />
+                <ScalarProperty Name="retailerpassword" ColumnName="retailerpassword" />
+                <ScalarProperty Name="approved" ColumnName="approved" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Get_AllProducts" FunctionName="dbGladiatorModel.Store.proc_Get_AllProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_Get_AllProducts_Result">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productnotification" ColumnName="productnotification" />
+                <ScalarProperty Name="productbrand" ColumnName="productbrand" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+                <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+                <ScalarProperty Name="retailername" ColumnName="retailername" />
+                <ScalarProperty Name="retaileremail" ColumnName="retaileremail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Get_Cart_Total" FunctionName="dbGladiatorModel.Store.proc_Get_Cart_Total">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_Get_Cart_Total_Result">
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="itemscount" ColumnName="itemscount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Get_Categories" FunctionName="dbGladiatorModel.Store.proc_Get_Categories">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_Get_Categories_Result">
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+                <ScalarProperty Name="categorydescription" ColumnName="categorydescription" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Get_Category_Count" FunctionName="dbGladiatorModel.Store.proc_Get_Category_Count" />
+          <FunctionImportMapping FunctionImportName="proc_Get_NotAvailableProducts" FunctionName="dbGladiatorModel.Store.proc_Get_NotAvailableProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_Get_NotAvailableProducts_Result">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+                <ScalarProperty Name="useremail" ColumnName="useremail" />
+                <ScalarProperty Name="cartquantity" ColumnName="cartquantity" />
+                <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+                <ScalarProperty Name="retailername" ColumnName="retailername" />
+                <ScalarProperty Name="retaileremail" ColumnName="retaileremail" />
+                <ScalarProperty Name="cartid" ColumnName="cartid" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Get_Pending_Retailers" FunctionName="dbGladiatorModel.Store.proc_Get_Pending_Retailers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_Get_Pending_Retailers_Result">
+                <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+                <ScalarProperty Name="retailername" ColumnName="retailername" />
+                <ScalarProperty Name="retaileremail" ColumnName="retaileremail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Get_Profile_User" FunctionName="dbGladiatorModel.Store.proc_Get_Profile_User">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_Get_Profile_User_Result">
+                <ScalarProperty Name="useremail" ColumnName="useremail" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="userphone" ColumnName="userphone" />
+                <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+                <ScalarProperty Name="userapartment" ColumnName="userapartment" />
+                <ScalarProperty Name="userstreet" ColumnName="userstreet" />
+                <ScalarProperty Name="usertown" ColumnName="usertown" />
+                <ScalarProperty Name="userstate" ColumnName="userstate" />
+                <ScalarProperty Name="userpincode" ColumnName="userpincode" />
+                <ScalarProperty Name="usercountry" ColumnName="usercountry" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Get_User_Orders" FunctionName="dbGladiatorModel.Store.proc_Get_User_Orders">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_Get_User_Orders_Result">
+                <ScalarProperty Name="useremail" ColumnName="useremail" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="userphone" ColumnName="userphone" />
+                <ScalarProperty Name="userapartment" ColumnName="userapartment" />
+                <ScalarProperty Name="userstreet" ColumnName="userstreet" />
+                <ScalarProperty Name="usertown" ColumnName="usertown" />
+                <ScalarProperty Name="userstate" ColumnName="userstate" />
+                <ScalarProperty Name="userpincode" ColumnName="userpincode" />
+                <ScalarProperty Name="usercountry" ColumnName="usercountry" />
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="productbrand" ColumnName="productbrand" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="orderquantity" ColumnName="orderquantity" />
+                <ScalarProperty Name="orderprice" ColumnName="orderprice" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Get_WishList" FunctionName="dbGladiatorModel.Store.proc_Get_WishList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_Get_WishList_Result">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productbrand" ColumnName="productbrand" />
+                <ScalarProperty Name="productnotification" ColumnName="productnotification" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+                <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+                <ScalarProperty Name="retailername" ColumnName="retailername" />
+                <ScalarProperty Name="retaileremail" ColumnName="retaileremail" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetCart" FunctionName="dbGladiatorModel.Store.proc_GetCart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_GetCart_Result">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+                <ScalarProperty Name="useremail" ColumnName="useremail" />
+                <ScalarProperty Name="cartquantity" ColumnName="cartquantity" />
+                <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+                <ScalarProperty Name="retailername" ColumnName="retailername" />
+                <ScalarProperty Name="retaileremail" ColumnName="retaileremail" />
+                <ScalarProperty Name="cartid" ColumnName="cartid" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetCompare" FunctionName="dbGladiatorModel.Store.proc_GetCompare">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_GetCompare_Result">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productbrand" ColumnName="productbrand" />
+                <ScalarProperty Name="productnotification" ColumnName="productnotification" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+                <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+                <ScalarProperty Name="retailername" ColumnName="retailername" />
+                <ScalarProperty Name="retaileremail" ColumnName="retaileremail" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Insert_Category" FunctionName="dbGladiatorModel.Store.proc_Insert_Category" />
+          <FunctionImportMapping FunctionImportName="proc_Insert_Compare" FunctionName="dbGladiatorModel.Store.proc_Insert_Compare" />
+          <FunctionImportMapping FunctionImportName="proc_Insert_Into_Cart" FunctionName="dbGladiatorModel.Store.proc_Insert_Into_Cart" />
+          <FunctionImportMapping FunctionImportName="proc_Insert_Order" FunctionName="dbGladiatorModel.Store.proc_Insert_Order" />
+          <FunctionImportMapping FunctionImportName="proc_Pending_Products" FunctionName="dbGladiatorModel.Store.proc_Pending_Products">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_Pending_Products_Result">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productbrand" ColumnName="productbrand" />
+                <ScalarProperty Name="productnotification" ColumnName="productnotification" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+                <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+                <ScalarProperty Name="retailername" ColumnName="retailername" />
+                <ScalarProperty Name="retaileremail" ColumnName="retaileremail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Reject_Product" FunctionName="dbGladiatorModel.Store.proc_Reject_Product" />
+          <FunctionImportMapping FunctionImportName="proc_Remove_Compare" FunctionName="dbGladiatorModel.Store.proc_Remove_Compare" />
+          <FunctionImportMapping FunctionImportName="proc_Remove_From_Cart" FunctionName="dbGladiatorModel.Store.proc_Remove_From_Cart" />
+          <FunctionImportMapping FunctionImportName="proc_Remove_From_Wishlist" FunctionName="dbGladiatorModel.Store.proc_Remove_From_Wishlist" />
+          <FunctionImportMapping FunctionImportName="proc_Remove_Product" FunctionName="dbGladiatorModel.Store.proc_Remove_Product" />
+          <FunctionImportMapping FunctionImportName="proc_Remove_Product_Compare" FunctionName="dbGladiatorModel.Store.proc_Remove_Product_Compare" />
+          <FunctionImportMapping FunctionImportName="proc_RetailLoginCheck" FunctionName="dbGladiatorModel.Store.proc_RetailLoginCheck">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_RetailLoginCheck_Result">
+                <ScalarProperty Name="retaileremail" ColumnName="retaileremail" />
+                <ScalarProperty Name="retailerpassword" ColumnName="retailerpassword" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Search_Result" FunctionName="dbGladiatorModel.Store.proc_Search_Result">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.proc_Search_Result_Result">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productbrand" ColumnName="productbrand" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+                <ScalarProperty Name="retailerid" ColumnName="retailerid" />
+                <ScalarProperty Name="retailername" ColumnName="retailername" />
+                <ScalarProperty Name="retaileremail" ColumnName="retaileremail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Update_Cart" FunctionName="dbGladiatorModel.Store.proc_Update_Cart" />
+          <FunctionImportMapping FunctionImportName="proc_UpdateProduct" FunctionName="dbGladiatorModel.Store.proc_UpdateProduct" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="dbGladiatorModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="dbGladiatorModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="dbGladiatorModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_GetAllProduct" FunctionName="dbGladiatorModel.Store.sp_GetAllProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.sp_GetAllProduct_Result">
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getCat" FunctionName="dbGladiatorModel.Store.sp_getCat" />
+          <FunctionImportMapping FunctionImportName="sp_GetPdtByCategory" FunctionName="dbGladiatorModel.Store.sp_GetPdtByCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.sp_GetPdtByCategory_Result">
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetPdtByPrice" FunctionName="dbGladiatorModel.Store.sp_GetPdtByPrice">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.sp_GetPdtByPrice_Result">
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetPdtByPriceCategory" FunctionName="dbGladiatorModel.Store.sp_GetPdtByPriceCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.sp_GetPdtByPriceCategory_Result">
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="dbGladiatorModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="dbGladiatorModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="dbGladiatorModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_SortByPriceAsc" FunctionName="dbGladiatorModel.Store.sp_SortByPriceAsc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.sp_SortByPriceAsc_Result">
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_SortByPriceDesc" FunctionName="dbGladiatorModel.Store.sp_SortByPriceDesc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbGladiatorModel.sp_SortByPriceDesc_Result">
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="productimage1" ColumnName="productimage1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="dbGladiatorModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="proc_UpdateProduct1" FunctionName="dbGladiatorModel.Store.proc_UpdateProduct1" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e8d80d89b9b34ab1afdc501c20c54c74" Name="Diagram1">
+        <EntityTypeShape EntityType="dbGladiatorModel.sysdiagram" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbGladiatorModel.tblCart" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbGladiatorModel.tblCategory" Width="1.5" PointX="3.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbGladiatorModel.tblCompare" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbGladiatorModel.tblOrder" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbGladiatorModel.tblProduct" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbGladiatorModel.tblRetailer" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbGladiatorModel.tblUser" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbGladiatorModel.tblWishlist" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
+        <AssociationConnector Association="dbGladiatorModel.FK__tblCart__product__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="dbGladiatorModel.FK__tblCart__userema__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="dbGladiatorModel.FK__tblProduc__categ__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="dbGladiatorModel.FK__tblCompar__Produ__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="dbGladiatorModel.FK__tblCompar__usere__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="dbGladiatorModel.FK__tblOrder__produc__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="dbGladiatorModel.FK__tblOrder__retail__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="dbGladiatorModel.FK__tblOrder__userem__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="dbGladiatorModel.FK__tblProduc__retai__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="dbGladiatorModel.FK__tblWishli__Produ__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="dbGladiatorModel.FK__tblWishli__usere__398D8EEE" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

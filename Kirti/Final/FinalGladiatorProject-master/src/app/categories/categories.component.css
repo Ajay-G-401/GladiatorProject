@@ -1,0 +1,18 @@
+.bcg
+{
+    background-color:darkgrey;
+    height:auto;
+    width:100%;
+}
+
+
+
+.img{
+    background-color:#a7a7a1;
+    width:200px;
+    height:200px;
+    margin:15px auto;
+    padding:20px 10px 20px 20px;
+    border-radius: 25px;
+   
+}

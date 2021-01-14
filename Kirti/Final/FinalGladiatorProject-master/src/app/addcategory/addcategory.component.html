@@ -1,0 +1,42 @@
+<div class="bcg">
+  
+</div>
+<div class="main-w3layouts wrapper">
+    <h1>Add Category</h1>
+    <div class="main-agileinfo">
+      <div class="agileits-top">
+        <form action="#" method="post">
+          <form [formGroup]="registerForm" (ngSubmit)="register()">                   
+            <div class="col">
+                <br>
+                <div class="row-md">
+                  <div class="form-group">
+                    <label>Category name</label>
+                    <input type="text" formControlName="categoryname" class="form-control" [(ngModel)]="categoryname" [ngClass]="{ 'is-invalid': submitted && f.categoryname.errors }" />
+                    <div *ngIf="submitted && f.categoryname.errors" class="invalid-feedback">
+                      <div *ngIf="f.categoryname.errors">Enter category name</div>                                    
+                    </div>
+                  </div>
+                </div>   
+               <br>
+               <div class="row-md">
+                <div class="form-group">
+                  <label>Description</label>
+                  <input type="text" formControlName="description" class="form-control" [(ngModel)]="description"  [ngClass]="{ 'is-invalid': submitted && f.description.errors }"/>
+                  <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                    <div *ngIf="f.description.errors">Description must be 20 char</div>
+                  </div>
+                </div>
+              </div> 
+              <br>
+                      
+            </div>
+            <br>
+            <input type="submit" value="Add">
+          </form>
+        </form>
+       
+        <a routerLink='/categories'  ><button class="btn btn-danger">Cancel</button></a>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,31 @@
+<div class="bcg">
+    <br><br><br>
+    <div class="container">
+        <h1>Retailer List</h1>
+    </div>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <th>Retailer ID</th>
+            <th>Retailer Name</th>
+            <th>Retailer email</th>
+            <th>Retailer Status</th>
+            <th>Options</th>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let retailer of acceptedList">
+                <td>{{retailer.retailerid}}</td>
+                <td>{{retailer.retailername}}</td>
+                <td>{{retailer.retaileremail}}</td>
+                <td>Approved</td>
+                <td><button class="btn btn-success" (click) = "RemoveRetailer(retailer.retailerid,retailer.retaileremail)">Remove</button></td>
+            </tr>
+            <tr *ngFor = "let retailer of pendingList">
+                <td>{{retailer.retailerid}}</td>
+                <td>{{retailer.retailername}}</td>
+                <td>{{retailer.retaileremail}}</td>
+                <td>Pending</td>
+                <td><button class="btn btn-success" (click) = "ApproveRetailer(retailer.retailerid,retailer.retaileremail)">Approve</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,28 @@
+<div class="bcg">
+    <br><br><br>
+    <div class="container">
+        <h1>All Categories</h1>
+    </div>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <th>Category ID</th>
+            <th>Category Name</th>
+            <th>Category Description</th>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let category of categories">
+                <td>{{category.categoryid}}</td>
+                <td>{{category.categoryname}}</td>
+                <td>{{category.categorydescription}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div >
+        <a [routerLink]="['/addcategory']"><img class="img" src="assets/images/category.png"></a>
+    </div>
+    
+    
+    <router-outlet></router-outlet>
+</div>
+
+

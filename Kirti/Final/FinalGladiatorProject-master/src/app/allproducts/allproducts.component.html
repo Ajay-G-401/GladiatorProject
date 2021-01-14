@@ -1,0 +1,31 @@
+<div class="bcg">
+    <br><br><br>
+    <div class="container">
+        <h1>All Products</h1>
+    </div>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Product Quantity</th>
+            <th>Product Brand</th>
+            <th>Product notification</th>
+            <th>Retailer Name</th>
+            <th>Category Name</th>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let product of productList">
+                <td>{{product.productid}}</td>
+                <td>{{product.productname}}</td>
+                <td>{{product.productprice}}</td>
+                <td>{{product.productquantity}}</td>
+                <td>{{product.productbrand}}</td>
+                <td>{{product.productnotification}}</td>
+                <td>{{product.retailername}}</td>
+                <td>{{product.categoryname}}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+</div>

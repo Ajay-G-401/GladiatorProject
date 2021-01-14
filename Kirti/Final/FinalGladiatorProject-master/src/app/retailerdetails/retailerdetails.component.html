@@ -1,0 +1,37 @@
+<div >
+    <table id="retailerdetails" >
+        <tr id="heading">
+            <th><span>
+                Product Name
+            </span></th>
+            <th><span >
+                Product Brand
+            </span></th>
+            <th><span >
+                Customer Email
+            </span></th>
+            <th>
+                <span >
+                    Product Price
+                </span>
+            </th>
+            <th><span >
+                Order Quantity
+            </span></th>
+            <th><span >
+                Retailer Revenue
+            </span></th>
+            
+        </tr>
+        
+        <tr *ngFor="let retailer of retailers">
+           <td>{{retailer.productname}}</td>        
+            <td>{{retailer.productbrand}}</td>
+            <td>{{retailer.useremail}}</td>
+            <td> &#x20b9;{{ retailer.productprice}}</td>
+            <td>{{retailer.orderquantity}}</td>
+            <td> &#x20b9;{{ retailer.productprice*retailer.orderquantity}}</td>
+        </tr>
+        
+    </table>
+</div>
